@@ -1,0 +1,95 @@
+﻿#navigation{
+	width:140px
+}
+
+#navigation table{
+	width:100%
+}
+
+#navigation input{
+	width:100%
+}
+
+#content{
+	background-color:gray;
+}
+
+#board-wrap{
+	position:relative;
+	width: 400px;
+	height: 400px;
+}
+
+#board-wrap board{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+#checkers-overlay{
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#arrow-overlay{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:100;
+	pointer-events: none;
+}
+
+#checkers-overlay img{
+	position:absolute;
+	z-index:10;
+
+}
+
+#turn-cue{
+	text-align: center;
+	color: white;
+}
+
+.turn-cue-black{
+	background-color: black;
+}
+
+.turn-cue-red{
+	background-color: red;
+}
+
+.mygrid-wrapper-div {
+	padding-top: 5px;
+	padding-bottom: 5px;
+    overflow: scroll;
+    height: 650px;
+}
+.mygrid-wrapper-div-applicant {
+	padding-top: 5px;
+	padding-bottom: 5px;
+    overflow: scroll;
+    height: 600px;
+}
+
+.pane {
+	border-right: solid gray 1px;
+}
+
+.applicant {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  color: #000;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 100%;
+  line-height: 22px;
+  cursor: text;
+  width: 100%;
+  height: 150px;
+}
