@@ -90,7 +90,7 @@
 
 	this.removeDocument = function(id) {
 		for (var i = 0; i < this.documents.length(); i++) {
-			if (this.documents[i].equals(id) {
+			if (this.documents[i].equals(id)) {
 				this.documents.splice(i, 1);
 				return;
 			}
@@ -108,7 +108,7 @@
 
 	this.removeComment = function(id) {
 		for (var i = 0; i < this.comments.length(); i++) {
-			if (this.comments[i].equals(id) {
+			if (this.comments[i].equals(id)) {
 				this.comments.splice(i, 1);
 				return;
 			}
