@@ -60,24 +60,7 @@
 	height: 150px;
 }
 
-.applicantForm {
-	background-color: #fff;
-	border: 1px solid #ccc;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	padding: 20px 6px;
-	margin-bottom: 10px;
+.cancel {
+	border: 1px solid #2b669a;
 	border-radius: 4px;
-	width: 100%;
-	height: 350px;
-}
-
-.smallForm {
-	background-color: #fff;
-	border: 1px solid #ccc;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	padding: 20px 6px;
-	margin-bottom: 10px;
-	border-radius: 4px;
-	width: 100%;
-	height: 200px;
 }

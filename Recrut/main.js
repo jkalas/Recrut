@@ -61,6 +61,8 @@ $(function() {
 
 		 	addApplicant(newApplicant);
 
+		 	$('#applicantModal').modal('hide'); 
+
 		 	document.getElementById("firstName").value = "";
 		 	document.getElementById("lastName").value = "";
 		 	document.getElementById("exp").value = "";
@@ -71,7 +73,7 @@ $(function() {
 	 	}
      });
 
-     $("applicantCancel").click(function(evt) {
+     $("#applicantCancel").click(function(evt) {
 	 		document.getElementById("firstName").value = "";
 		 	document.getElementById("lastName").value = "";
 		 	document.getElementById("exp").value = "";
@@ -88,6 +90,8 @@ $(function() {
 
 		 	var jobsList = document.getElementById('jobsList');
 		 	jobsList.innerHTML += "<li role=\"presentation\"><a href=\"#\">" + type + " - " + position + "</a></li>";
+
+		 	$('#jobModal').modal('hide'); 
 
 		 	document.getElementById("positionName").value = "";
 		 	document.getElementById("positionType").selectedIndex = 0;
@@ -110,6 +114,8 @@ $(function() {
 		 	var groupList = document.getElementById('groupList');
 		 	groupList.innerHTML += "<li role=\"presentation\"><a href=\"#\">" + groupName + "</a></li>";
 
+     		$('#groupModal').modal('hide'); 
+
 		 	document.getElementById("groupName").value = "";
 	 	} else {
 	 		alert("Please enter a group name.");
@@ -127,22 +133,17 @@ $(function() {
 
      function addApplicant(entry) {
      	var div = document.createElement("div");
-	 	div.className = "applicant";
-	 	var name = document.createElement("b");
-  		name.innerHTML = entry.firstName + " " + entry.lastName;
+	 	div.className = "panel panel-default";
+	 	var name = document.createElement("div");
+  		name.className = "panel-heading";
+  		name.innerHTML = "<h3 class=\"panel-title\">" + entry.firstName + " " + entry.lastName + "</h3>";
+  		div.appendChild(name);
 
-	 	var experience = document.createTextNode(entry.getExperience());
-	 	var email = document.createTextNode(entry.getEmail());
-	 	var phone = document.createTextNode(entry.getPhoneNumber());
+  		var body = document.createElement("div");
+  		body.className = "panel-body";
+  		body.innerHTML = entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
 
-	 	div.appendChild(name);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(experience);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(email);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(phone);
+	 	div.appendChild(body);
 
 	 	applicantList.appendChild(div);
      }
