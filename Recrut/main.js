@@ -15,17 +15,21 @@ $(function() {
 	 jimmyDean.setExperience("Harvard");
 	 jimmyDean.setPhoneNumber("(555) 123-6634");
 	 var resume = new doc("Resume", 1, "../img/resume.png");
+	 var coverLetter = new doc("Cover Letter", 1, "../img/coverLetter.png");
      jimmyDean.addDocument(resume);
+     jimmyDean.addDocument(coverLetter);
 
 	 bryanWilliams.setEmail("bryanwilly1234@gmail.com");
 	 bryanWilliams.setExperience("Stanford");
 	 bryanWilliams.setPhoneNumber("(555) 777-6634");
      bryanWilliams.addDocument(resume);
+     bryanWilliams.addDocument(coverLetter);
 
 	 jeremyKalas.setEmail("jkalas@hotmail.com");
 	 jeremyKalas.setExperience("MIT");
 	 jeremyKalas.setPhoneNumber("(555) 123-4561");
      jeremyKalas.addDocument(resume);
+     jeremyKalas.addDocument(coverLetter);
 
 	 jennyLin.setEmail("linjenny@mit.edu");
 	 jennyLin.setExperience("MIT");
@@ -213,7 +217,11 @@ $(function() {
 	 		docButton.className = "document-button";
 	 		docButton.innerHTML = doc.name;
 	 		docButton.setAttribute('type', 'button');
+
+	 		var divider = document.createElement("div");
+  			divider.className = "divider";
 	 		docs.appendChild(docButton);
+	 		docs.appendChild(divider);
 	 		$(docButton).click(function(evt) {
 	 			console.log(doc.getSrc());
 	 			$('#docContent').css('background-image', 'url(' + doc.getSrc() + ')');

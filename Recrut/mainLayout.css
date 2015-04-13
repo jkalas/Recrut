@@ -79,3 +79,9 @@
 	background-color: #fff;
 	color: #2b669a;
 }
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
