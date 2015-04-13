@@ -31,6 +31,19 @@
         <script type="text/javascript" src="main.js"></script
     </head>
     <body>
+        <div id="groupMenu" style="display: none">
+            <b>Group</b>
+                <button class="btn btn-default dropdown-toggle" type="button" id="groupDDL" data-toggle="dropdown" aria-expanded="false">
+                <span class="selection" id="currentGroup">Unread</span>
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="groupMenu" id="groupDropDown">
+                <li role="presentation"><a role="menuitem" href="#">Unread</a></li>
+                <li role="presentation"><a role="menuitem" href="#">First Round</a></li>
+                <li role="presentation"><a role="menuitem" href="#">Denied</a></li>
+                </ul></button>
+        </div>
+
         <!-- Add applicant modal -->
         <div class="modal fade" id="applicantModal">
             <div class="modal-dialog">

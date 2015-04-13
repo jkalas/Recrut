@@ -182,10 +182,17 @@ $(function() {
   		var collapse = document.createElement("div");
   		collapse.className = "panel-collapse collapse in";
   		collapse.id = entry.firstName + entry.lastName;
+
+  		var status = document.getElementById("groupMenu");
+  		var cln = status.cloneNode(true);
+  		cln.style.display = "block";
+  		cln.id = entry.firstName + entry.lastName + "Group";
+  		cln.children[1].children[0].innerHTML = entry.group;
   		
   		var body = document.createElement("div");
   		body.className = "panel-body";
-  		body.innerHTML = entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
+  		body.appendChild(cln);
+  		body.innerHTML += entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
   		collapse.appendChild(body);
 
   		var email = document.createElement("div");
