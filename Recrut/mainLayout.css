@@ -64,3 +64,10 @@
 	border: 1px solid #2b669a;
 	border-radius: 4px;
 }
+
+.folder a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e080";
+    float: right;
+    color: #2b669a;
+}

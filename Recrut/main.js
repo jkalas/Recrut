@@ -71,8 +71,9 @@ $(function() {
 		 	document.getElementById("exp").value = "";
 		 	document.getElementById("email").value = "";
 		 	document.getElementById("phone").value = "";
+		 	document.getElementById("applicantError").style.display = "none";
 	 	} else {
-	 		alert("Please enter a first name and last name.");
+	 		document.getElementById("applicantError").style.display = "block";
 	 	}
      });
 
@@ -82,6 +83,7 @@ $(function() {
 		 	document.getElementById("exp").value = "";
 		 	document.getElementById("email").value = "";
 		 	document.getElementById("phone").value = "";
+		 	document.getElementById("applicantError").style.display = "none";
      });
 
     $("#jobSubmit").click(function(evt) {
@@ -92,20 +94,22 @@ $(function() {
 		 	var newJob = new job(position, 0);
 
 		 	var jobsList = document.getElementById('jobsList');
-		 	jobsList.innerHTML += "<li role=\"presentation\"><a href=\"#\">" + type + " - " + position + "</a></li>";
+		 	jobsList.innerHTML += "<li class=\"folder\" role=\"presentation\"><a href=\"#\">" + type + " - " + position + "</a></li>";
 
 		 	$('#jobModal').modal('hide'); 
 
 		 	document.getElementById("positionName").value = "";
-		 	document.getElementById("positionType").selectedIndex = 0;
+		 	document.getElementById("jobError").style.display = "none";
+		 	document.getElementById("typeSelection").innerHTML = "Full Time";
 	 	} else {
-	 		alert("Please enter a position name.");
+	 		document.getElementById("jobError").style.display = "block";
 	 	}
      });
 
     $("#jobCancel").click(function(evt) {
 	 	document.getElementById("positionName").value = "";
-	 	document.getElementById("positionType").selectedIndex = 0;
+	 	document.getElementById("jobError").style.display = "none";
+	 	document.getElementById("typeSelection").innerHTML = "Full Time";
      });
 
     $("#docCancel").click(function(evt) {
@@ -119,18 +123,20 @@ $(function() {
 		 	var newGroup = new group(groupName, 0, "Job");
 
 		 	var groupList = document.getElementById('groupList');
-		 	groupList.innerHTML += "<li role=\"presentation\"><a href=\"#\">" + groupName + "</a></li>";
+		 	groupList.innerHTML += "<li class=\"folder\" role=\"presentation\"><a href=\"#\">" + groupName + "</a></li>";
 
      		$('#groupModal').modal('hide'); 
 
 		 	document.getElementById("groupName").value = "";
+		 	document.getElementById("groupError").style.display = "none";
 	 	} else {
-	 		alert("Please enter a group name.");
+	 		document.getElementById("groupError").style.display = "block";
 	 	}
      });
 
     $("#groupCancel").click(function(evt) {
 	 	document.getElementById("groupName").value = "";
+	 	document.getElementById("groupError").style.display = "none";
      });
 
     $(".dropdown-menu li a").click(function(){
@@ -139,26 +145,24 @@ $(function() {
 	});
 
      function addApplicant(entry) {
-     	var div = document.createElement("div");
-	 	div.className = "applicant";
-	 	var name = document.createElement("b");
-  		name.innerHTML = entry.firstName + " " + entry.lastName;
-
-	 	var experience = document.createTextNode(entry.getExperience());
-	 	var email = document.createTextNode(entry.getEmail());
-	 	var phone = document.createTextNode(entry.getPhoneNumber());
-	 	
+		var div = document.createElement("div");
 	 	div.className = "panel panel-default";
+	 	
 	 	var name = document.createElement("div");
   		name.className = "panel-heading";
   		name.innerHTML = "<h3 class=\"panel-title\">" + entry.firstName + " " + entry.lastName + "</h3>";
+  		//name.innerHTML += "<a data-toggle =\"collapse\" data-parent=\"#accordion\" href=\"#" + entry.firstName + entry.lastName + "\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a>";
   		div.appendChild(name);
 
+  		var collapse = document.createElement("div");
+  		collapse.className = "panel-collapse collapse in";
+  		collapse.id = entry.firstName + entry.lastName;
+  		
   		var body = document.createElement("div");
   		body.className = "panel-body";
   		body.innerHTML = entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
-	 	div.appendChild(body);
-
+  		collapse.appendChild(body);
+  		
 	 	var docs = document.createElement("div");
   		docs.className = "panel-body";
 	 	entry.documents.forEach(function(doc){
@@ -173,8 +177,9 @@ $(function() {
 	 			$('#docModal').modal('show'); 
      		});
 	 	});
-	 	div.appendChild(docs);
 
+	 	collapse.appendChild(docs);
+	 	div.appendChild(collapse);
 	 	applicantList.appendChild(div);
      }
 
