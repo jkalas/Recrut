@@ -13,7 +13,7 @@ $(function() {
 
 	 jimmyDean.setEmail("jimmydean@college.harvard.edu");
 	 jimmyDean.setExperience("Harvard");
-	 jimmyDean.setPhoneNumber("(555) 123-6634");
+	 jimmyDean.setPhoneNumber("(617) 123-6634");
 	 var resume = new doc("Resume", 1, "../img/resume.png");
 	 var coverLetter = new doc("Cover Letter", 1, "../img/coverLetter.png");
      jimmyDean.addDocument(resume);
@@ -21,29 +21,29 @@ $(function() {
 
 	 bryanWilliams.setEmail("bryanwilly1234@gmail.com");
 	 bryanWilliams.setExperience("Stanford");
-	 bryanWilliams.setPhoneNumber("(555) 777-6634");
+	 bryanWilliams.setPhoneNumber("(808) 777-6634");
      bryanWilliams.addDocument(resume);
      bryanWilliams.addDocument(coverLetter);
 
 	 jeremyKalas.setEmail("jkalas@hotmail.com");
 	 jeremyKalas.setExperience("MIT");
-	 jeremyKalas.setPhoneNumber("(555) 123-4561");
+	 jeremyKalas.setPhoneNumber("(631) 123-4561");
      jeremyKalas.addDocument(resume);
      jeremyKalas.addDocument(coverLetter);
 
 	 jennyLin.setEmail("linjenny@mit.edu");
 	 jennyLin.setExperience("MIT");
-	 jennyLin.setPhoneNumber("(555) 567-2342");
+	 jennyLin.setPhoneNumber("(206) 567-2342");
 	 jennyLin.addDocument(resume);
 
 	 itamarBelson.setEmail("it_bel@gmail.com");
 	 itamarBelson.setExperience("MIT");
-	 itamarBelson.setPhoneNumber("(555) 789-2345");
+	 itamarBelson.setPhoneNumber("(425) 789-2345");
 	 itamarBelson.addDocument(resume);
 
 	 paulColella.setEmail("paul_colella@gmail.com");
 	 paulColella.setExperience("MIT");
-	 paulColella.setPhoneNumber("(555) 963-5683");
+	 paulColella.setPhoneNumber("(213) 963-5683");
 	 paulColella.addDocument(resume);
 
 	 allApplicants = [paulColella, jimmyDean, jennyLin, bryanWilliams, itamarBelson, jeremyKalas];
@@ -202,10 +202,13 @@ $(function() {
 	 	col1.className = "col-md-4";
 
 	 	var col2 = document.createElement("div");
-	 	col2.className = "col-md-4";
+	 	col2.className = "col-md-2";
 
 	 	var col3 = document.createElement("div");
-	 	col3.className = "col-md-4";
+	 	col3.className = "col-md-3";
+
+	 	var col4 = document.createElement("div");
+	 	col4.className = "col-md-3";
 
 	 	var name = document.createElement("div");
   		name.className = "panel-heading";
@@ -220,11 +223,15 @@ $(function() {
   		var cln = status.cloneNode(true);
   		cln.style.display = "block";
   		cln.id = entry.firstName + entry.lastName + "Group";
-  		cln.children[1].children[0].innerHTML = entry.group;
+  		cln.children[0].children[0].innerHTML = entry.group;
+
+  		var groupBody = document.createElement("div");
+  		groupBody.className = "panel-body";
+  		groupBody.innerHTML = "<b>Group</b><br><br>"
+  		groupBody.appendChild(cln);
   		
   		var body = document.createElement("div");
   		body.className = "panel-body";
-  		body.appendChild(cln);
   		body.innerHTML += entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
   		main.appendChild(body);
 
@@ -296,12 +303,14 @@ $(function() {
 	 	main.appendChild(email);
 
 	 	col1.appendChild(main);
-	 	col2.appendChild(docs);
-	 	col3.appendChild(notes);
+	 	col2.appendChild(groupBody);
+	 	col3.appendChild(docs);
+	 	col4.appendChild(notes);
 
 	 	row.appendChild(col1);
 	 	row.appendChild(col2);
 	 	row.appendChild(col3);
+	 	row.appendChild(col4);
 
 	 	applicantList.appendChild(div);
      }

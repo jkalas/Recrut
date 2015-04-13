@@ -93,3 +93,8 @@
     height:auto;
     display:inline-block;
 }
+
+.dropdown-menu-center {
+  right: 35%;
+  left: auto;
+}

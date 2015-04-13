@@ -31,17 +31,16 @@
         <script type="text/javascript" src="main.js"></script
     </head>
     <body>
-        <div id="groupMenu" style="display: none">
-            <b>Group</b>
-                <button class="btn btn-default dropdown-toggle" type="button" id="groupDDL" data-toggle="dropdown" aria-expanded="false">
-                <span class="selection" id="currentGroup">Unread</span>
-                <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="groupMenu" id="groupDropDown">
-                <li role="presentation"><a role="menuitem" href="#">Unread</a></li>
-                <li role="presentation"><a role="menuitem" href="#">First Round</a></li>
-                <li role="presentation"><a role="menuitem" href="#">Denied</a></li>
-                </ul></button>
+        <div id="groupMenu" style="display: none"class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="groupDDL" data-toggle="dropdown" aria-expanded="false">
+              <span class="selection" id="currentGroup">Unread</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="groupMenu" id="groupDropDown">
+              <li role="presentation"><a role="menuitem" href="#">Unread</a></li>
+              <li role="presentation"><a role="menuitem" href="#">First Round</a></li>
+              <li role="presentation"><a role="menuitem" href="#">Denied</a></li>
+            </ul>
         </div>
 
         <!-- Add applicant modal -->
@@ -88,17 +87,18 @@
                     <b>Position</b> <input type="text" id="positionName"><br><br>
                     <div class="typeSelect">
                     <b>Type</b> 
+                        <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="typeMenu" data-toggle="dropdown" aria-expanded="false">
-                        <span class="selection" id="typeSelection">Full Time</span>
-                        <span class="caret"></span>
+                          <span class="selection" id="typeSelection">Full Time</span>
+                          <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="typeMenu" id="typeDropDown">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Full Time</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Part Time</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entry Level</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Intern</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
-                        </ul> </button>
+                          <ul class="dropdown-menu dropdown-menu-center" role="menu" aria-labelledby="typeMenu" id="typeDropDown">
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Full Time</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Part Time</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entry Level</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Intern</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                          </ul> </button></div>
                         </div><br>
                         <div id="jobError" class="alert alert-danger" style="display: none" role="alert">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
