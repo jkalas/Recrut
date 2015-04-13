@@ -71,3 +71,11 @@
     float: right;
     color: #2b669a;
 }
+
+.document-button {
+	background-color: #fff;
+	border: 1px solid #2b669a;
+	border-radius: 4px;
+	background-color: #fff;
+	color: #2b669a;
+}

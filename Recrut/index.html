@@ -40,17 +40,18 @@
                     <h4 class="modal-title">Add New Applicant</h4>
                   </div>
                   <div class="modal-body" align="center">
-                    <b>First Name</b> <input type="text" id="firstName"><br><br>
-                                    <b>Last Name</b> <input type="text" id="lastName"><br><br>
-                                    Experience <input type="text" id="exp"><br><br>
-                                    Email <input type="text" id="email"><br><br>
-                                    Phone <input type="text" id="phone"><br><br>
-
-                    <div id="applicantError" class="alert alert-danger" style="display: none" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        Enter a first name and last name.
-                    </div>
+                        First Name <input type="text" id="firstName"><br><br>
+                        Last Name <input type="text" id="lastName"><br><br>
+                        Experience <input type="text" id="exp"><br><br>
+                        Email <input type="text" id="email"><br><br>
+                        Phone <input type="text" id="phone"><br><br>
+                        Resume <input type="file" id="resume"><br><br>
+                        Cover Letter <input type="file" id="coverLetter"><br><br>
+                        <div id="applicantError" class="alert alert-danger" style="display: none" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            Enter a first name and last name.
+                        </div>
                   </div>
                   <div class="modal-footer">
                     <ul class="nav nav-pills" style="float: right">
@@ -140,12 +141,61 @@
                       </div>
                       <div class="modal-footer">
                         <ul class="nav nav-pills" style="float: right">
-                            <li role="presentation" class="cancel" data-dismiss="modal" id="groupCancel"><a href="#" style="text-align:center;">Cancel</a></li>
+                            <li role="presentation" class="cancel" data-dismiss="modal" id="docCancel"><a href="#" style="text-align:center;">Close</a></li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
+            <!-- Email modal -->
+            <div class="modal fade" id="emailModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Email Applicant</h4>
+                      </div>
+                      <div class="modal-body">
+                      Subject <input type="text" id="emailSubject"><br><br>
+                      <textarea rows=10 cols=78 id="emailBody"></textarea><br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <ul class="nav nav-pills" style="float: right">
+                            <li role="presentation" class="active" data-dismiss="modal" id="emailSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send</a></li>
+                            <li role="presentation" class="cancel" data-dismiss="modal" id="emailCancel"><a href="#" style="text-align:center;">Cancel</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+            <!-- Notes modal -->
+            <div class="modal fade" id="notesModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Notes</h4>
+                  </div>
+                  <div class="modal-body">
+                  <ul class="nav nav-tabs">
+                      <li role="presentation" class="active"><a href="#">Interview 1</a></li>
+                      <li role="presentation"><a href="#">Interview 2</a></li>
+                      <li role="presentation"><a href="#">+</a></li>
+                    </ul><br>
+                    Applicant has great problem solving skills!
+                  </div>
+                  <div class="modal-footer">
+                    <ul class="nav nav-pills" style="float: right">
+                        <li role="presentation" class="cancel" data-dismiss="modal" id="emailCancel"><a href="#" style="text-align:center;">Close</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         <!-- Navigation Bar -->    
         <nav class="navbar navbar-default">
