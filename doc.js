@@ -2,7 +2,7 @@
  * representation of a document with the proper paramaters for accesing it
  */
 
-var document = function(name, id, src) {
+var doc = function(name, id, src) {
 	//Initialize
 	this.name = name;
 	this.id = id;
@@ -44,7 +44,7 @@ var document = function(name, id, src) {
 
 	this.removeComment = function(id) {
 		for (var i = 0; i < this.comments.length(); i++) {
-			if (this.comments[i].equals(id) {
+			if (this.comments[i].equals(id)) {
 				this.comments.splice(i, 1);
 				return;
 			}

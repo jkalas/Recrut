@@ -5,6 +5,7 @@ $(function() {
 
 	 var paulColella = new applicant("Paul", "Colella", 1, "Unread");
 	 var jimmyDean = new applicant("Jimmy", "Dean", 2, "First Round");
+	 
 	 var jennyLin = new applicant("Jenny", "Lin", 3, "Unread");
 	 var bryanWilliams = new applicant("Bryan", "Williams", 4, "Denied");
 	 var itamarBelson = new applicant("Itamar", "Belson", 5, "First Round");
@@ -13,6 +14,8 @@ $(function() {
 	 jimmyDean.setEmail("jimmydean@college.harvard.edu");
 	 jimmyDean.setExperience("Harvard");
 	 jimmyDean.setPhoneNumber("(555) 123-6634");
+	 var resume = new doc("Resume", 1, "/resume.png");
+     jimmyDean.addDocument(resume);
 	 bryanWilliams.setEmail("bryanwilly1234@gmail.com");
 	 bryanWilliams.setExperience("Stanford");
 	 bryanWilliams.setPhoneNumber("(555) 777-6634");
@@ -101,6 +104,11 @@ $(function() {
 	 	document.getElementById("positionType").selectedIndex = 0;
      });
 
+    $("#docCancel").click(function(evt) {
+	 	document.getElementById("positionName").value = "";
+	 	document.getElementById("positionType").selectedIndex = 0;
+     });
+
     $("#groupSubmit").click(function(evt) {
      	var groupName = document.getElementById("groupName").value;
 
@@ -137,14 +145,26 @@ $(function() {
 
 	 	div.appendChild(name);
 	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(document.createElement("br"));
 	 	div.appendChild(experience);
 	 	div.appendChild(document.createElement("br"));
 	 	div.appendChild(email);
 	 	div.appendChild(document.createElement("br"));
 	 	div.appendChild(phone);
+	 	div.appendChild(document.createElement("br"));
+	 	div.appendChild(document.createElement("br"));
+
+	 	entry.documents.forEach(function(doc){
+	 		var docButton = document.createElement("button");
+	 		docButton.innerHTML = doc.name;
+	 		docButton.setAttribute('type', 'button');
+	 		div.appendChild(docButton);
+	 		$(docButton).click(function(evt) {
+	 			$('#docModal').modal('show'); 
+     		});
+	 	});
 
 	 	applicantList.appendChild(div);
      }
 
 });
+
