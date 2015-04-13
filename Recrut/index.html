@@ -21,10 +21,12 @@
         <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
         <!-- Load any supplemental Javascript libraries here -->
-        <script type="text/javascript" src="external_dependencies/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="external_dependencies/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="external_dependencies/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="external_dependencies/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
         <script type="text/javascript" src="../applicant.js"></script>
+        <script type="text/javascript" src="../job.js"></script>
+        <script type="text/javascript" src="../group.js"></script>
         <script type="text/javascript" src="main.js"></script
     </head>
     <body>
@@ -42,22 +44,10 @@
             <div class="row">
                 <div class="col-md-2 pane">
                     <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Position</a></li>
+                            <li role="presentation" class="active" id="addJob"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Position</a></li>
                     </ul>
                     <div class="mygrid-wrapper-div">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation"><a href="#">Full Time - MBA</a></li>
-                            <li role="presentation"><a href="#">Full Time - Ads</a></li>
-                            <li role="presentation"><a href="#">Full Time - Marketing</a></li>
-                            <li role="presentation"><a href="#">Full Time - Sr. Engineer</a></li>
-                            <li role="presentation"><a href="#">Part Time - Admin</a></li>
-                            <li role="presentation"><a href="#">Part Time - Assistant</a></li>
-                            <li role="presentation"><a href="#">Intern - MBA</a></li>
-                            <li role="presentation"><a href="#">Intern - SW Engineer</a></li>
-                            <li role="presentation"><a href="#">Intern - Trading</a></li>
-                            <li role="presentation"><a href="#">Intern - Hardware</a></li>
-                            <li role="presentation"><a href="#">Intern - Sales</a></li>
-                            <li role="presentation"><a href="#">Intern - Marketing</a></li>
+                        <ul class="nav nav-pills nav-stacked" id="jobsList">
                             <li role="presentation"><a href="#">Full Time - MBA</a></li>
                             <li role="presentation"><a href="#">Full Time - Ads</a></li>
                             <li role="presentation"><a href="#">Full Time - Marketing</a></li>
@@ -75,19 +65,93 @@
                 </div>
                 <div class="col-md-1 pane">
                     <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Group</a></li>
+                            <li role="presentation" class="active" id="addGroup"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Group</a></li>
                     </ul>
                     <div class="mygrid-wrapper-div">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation"><a href="#">All</a></li>
-                            <li role="presentation"><a href="#">Yes</a></li>
-                            <li role="presentation"><a href="#">No</a></li>
+                        <ul class="nav nav-pills nav-stacked" id="groupList">
+                            <li role="presentation"><a href="#">Unread</a></li>
+                            <li role="presentation"><a href="#">First Round</a></li>
+                            <li role="presentation"><a href="#">Denied</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
+              
+                <div class="modal fade" id="applicantModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add New Applicant</h4>
+                      </div>
+                      <div class="modal-body" align="center">
+                        <b>First Name</b> <input type="text" id="firstName"><br><br>
+                                        <b>Last Name</b> <input type="text" id="lastName"><br><br>
+                                        Experience <input type="text" id="exp"><br><br>
+                                        Email <input type="text" id="email"><br><br>
+                                        Phone <input type="text" id="phone"><br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="applicantCancel">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="applicantSubmit">Add</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" id="jobModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add New Position</h4>
+                      </div>
+                      <div class="modal-body" align="center">
+                        <b>Position</b> <input type="text" id="positionName"><br><br>
+                        <div class="typeSelect">
+                        <b>Type</b> 
+                            <button class="btn btn-default dropdown-toggle" type="button" id="typeMenu" data-toggle="dropdown" aria-expanded="false">
+                            <span class="selection" id="typeSelection">Full Time</span>
+                            <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="typeMenu" id="typeDropDown">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Full Time</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Part Time</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entry Level</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Intern</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                            </ul> </button>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="jobCancel">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="jobSubmit">Add</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="modal fade" id="groupModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add New Group</h4>
+                      </div>
+                      <div class="modal-body" align="center">
+                        <b>Group Name</b> <input type="text" id="groupName"><br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="groupCancel">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="groupSubmit">Add</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                     <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active" style="width:120px;"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Applicant</a></li>
+                            <li role="presentation" class="active" style="width:120px;" id="addApplicant"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Applicant</a></li>
                     </ul>
                     <div class="input-group" style="padding-top: 5px;">
                       <input type="text" class="form-control" placeholder="Search Applicants">

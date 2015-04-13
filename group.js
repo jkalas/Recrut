@@ -50,7 +50,7 @@
 
 	this.removeApplicant = function(applicant) {
 		for (var i = 0; i < this.applicants.length(); i++) {
-			if (this.) {
+			if (this.applicants) {
 				this.tags.splice(i, 1);
 				return;
 			}
