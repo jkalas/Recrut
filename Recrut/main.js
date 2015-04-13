@@ -157,6 +157,24 @@ $(function() {
 	 	document.getElementById("emailBody").value = "";
      });
 
+    $("#addNotesSubmit").click(function(evt) {
+	 	document.getElementById("newNotes").value = "";
+     });
+
+    $("#addNotesCancel").click(function(evt) {
+	 	document.getElementById("newNotes").value = "";
+     });
+
+    $("#addDocSubmit").click(function(evt) {
+	 	document.getElementById("newDocName").value = "";
+	 	document.getElementById("newDoc").value = "";
+     });
+
+    $("#addDocCancel").click(function(evt) {
+	 	document.getElementById("newDocName").value = "";
+	 	document.getElementById("newDoc").value = "";
+     });
+
     $(".dropdown-menu li a").click(function(){
   		$(this).parents(".typeSelect").find(".selection").text($(this).text());
   		$(this).parents(".typeSelect").find(".selection").val($(this).data('value'));
@@ -177,15 +195,26 @@ $(function() {
 		var div = document.createElement("div");
 	 	div.className = "panel panel-default";
 	 	
+	 	var row = document.createElement("div");
+	 	row.className = "row";
+
+	 	var col1 = document.createElement("div");
+	 	col1.className = "col-md-4";
+
+	 	var col2 = document.createElement("div");
+	 	col2.className = "col-md-4";
+
+	 	var col3 = document.createElement("div");
+	 	col3.className = "col-md-4";
+
 	 	var name = document.createElement("div");
   		name.className = "panel-heading";
   		name.innerHTML = "<h3 class=\"panel-title\">" + entry.firstName + " " + entry.lastName + "</h3>";
   		//name.innerHTML += "<a data-toggle =\"collapse\" data-parent=\"#accordion\" href=\"#" + entry.firstName + entry.lastName + "\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a>";
   		div.appendChild(name);
+  		div.appendChild(row);
 
-  		var collapse = document.createElement("div");
-  		collapse.className = "panel-collapse collapse in";
-  		collapse.id = entry.firstName + entry.lastName;
+  		var main = document.createElement("div");
 
   		var status = document.getElementById("groupMenu");
   		var cln = status.cloneNode(true);
@@ -197,7 +226,7 @@ $(function() {
   		body.className = "panel-body";
   		body.appendChild(cln);
   		body.innerHTML += entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
-  		collapse.appendChild(body);
+  		main.appendChild(body);
 
   		var email = document.createElement("div");
   		email.className = "panel-body";
@@ -212,16 +241,27 @@ $(function() {
 
 	 	var docs = document.createElement("div");
   		docs.className = "panel-body";
+
+		var addDoc = document.createElement("button");
+  		addDoc.className = "document-add";
+  		addDoc.innerHTML = "<span class=\"glyphicon glyphicon-plus\"></span>";
+  		$(addDoc).click(function(evt) {
+	 		$('#addDocumentsModal').modal('show'); 
+     	});
+
+  		docs.innerHTML = "<b>Documents</b>"
+     	docs.appendChild(addDoc);
+     	docs.appendChild(document.createElement("br"));
+     	docs.appendChild(document.createElement("br"));
+
 	 	entry.documents.forEach(function(doc){
 	 		var docButton = document.createElement("button");
 	 		docButton.className = "document-button";
-	 		docButton.innerHTML = doc.name;
+	 		docButton.innerHTML = "<span class=\"glyphicon glyphicon-paperclip\"></span> " + doc.name;
 	 		docButton.setAttribute('type', 'button');
 
-	 		var divider = document.createElement("div");
-  			divider.className = "divider";
 	 		docs.appendChild(docButton);
-	 		docs.appendChild(divider);
+	 		docs.appendChild(document.createElement("br"));
 	 		$(docButton).click(function(evt) {
 	 			console.log(doc.getSrc());
 	 			$('#docContent').css('background-image', 'url(' + doc.getSrc() + ')');
@@ -231,19 +271,38 @@ $(function() {
 
 	 	var notes = document.createElement("div");
   		notes.className = "panel-body";
+
+  		var addNotes = document.createElement("button");
+  		addNotes.className = "document-add";
+  		addNotes.innerHTML = "<span class=\"glyphicon glyphicon-plus\"></span>";
+  		$(addNotes).click(function(evt) {
+	 		$('#addNotesModal').modal('show'); 
+     	});
+
   		var notesButton = document.createElement("button");
   		notesButton.className = "document-button";
-  		notesButton.innerHTML = "<span class=\"glyphicon glyphicon-pencil\"></span>" + " Notes";
+  		notesButton.innerHTML = "<span class=\"glyphicon glyphicon-pencil\"></span>" + " Interview 1";
   		$(notesButton).click(function(evt) {
 	 		$('#notesModal').modal('show'); 
      	});
 
+  		notes.innerHTML = "<b>Notes</b>";
+  		notes.appendChild(addNotes);
+  		notes.appendChild(document.createElement("br"));
+     	notes.appendChild(document.createElement("br"));
+
      	notes.appendChild(notesButton);
 
-	 	collapse.appendChild(email);
-	 	collapse.appendChild(docs);
-	 	collapse.appendChild(notes);
-	 	div.appendChild(collapse);
+	 	main.appendChild(email);
+
+	 	col1.appendChild(main);
+	 	col2.appendChild(docs);
+	 	col3.appendChild(notes);
+
+	 	row.appendChild(col1);
+	 	row.appendChild(col2);
+	 	row.appendChild(col3);
+
 	 	applicantList.appendChild(div);
      }
 

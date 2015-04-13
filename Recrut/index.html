@@ -194,21 +194,76 @@
                     <h4 class="modal-title">Notes</h4>
                   </div>
                   <div class="modal-body">
-                  <ul class="nav nav-tabs">
-                      <li role="presentation" class="active"><a href="#">Interview 1</a></li>
-                      <li role="presentation"><a href="#">Interview 2</a></li>
-                      <li role="presentation"><a href="#">+</a></li>
-                    </ul><br>
-                    Applicant has great problem solving skills!
-                  </div>
+                      <div class="tabbable">
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Interview 1</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Interview 2</a></li>
+                          </ul>
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                              <br>
+                              <p>Applicant has great problem solving skills!</p>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                              <br>
+                              <p>I enjoyed speaking with the applicant.</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                   <div class="modal-footer">
                     <ul class="nav nav-pills" style="float: right">
-                        <li role="presentation" class="cancel" data-dismiss="modal" id="emailCancel"><a href="#" style="text-align:center;">Close</a></li>
+                        <li role="presentation" class="cancel" data-dismiss="modal" id="notesCancel"><a href="#" style="text-align:center;">Close</a></li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
+
+
+            <!-- Add documents modal -->
+            <div class="modal fade" id="addDocumentsModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add notes</h4>
+                      </div>
+                      <div class="modal-body">
+                      Name <input type="text" id="newDocName"><br><br>
+                      Document <input type="file" id="newDoc"><br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <ul class="nav nav-pills" style="float: right">
+                            <li role="presentation" class="active" data-dismiss="modal" id="addDocSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
+                            <li role="presentation" class="cancel" data-dismiss="modal" id="addDocCancel"><a href="#" style="text-align:center;">Cancel</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            <!-- Add notes modal -->
+            <div class="modal fade" id="addNotesModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add notes</h4>
+                      </div>
+                      <div class="modal-body">
+                      <textarea rows=10 cols=78 id="newNotes"></textarea><br><br>
+                      </div>
+                      <div class="modal-footer">
+                        <ul class="nav nav-pills" style="float: right">
+                            <li role="presentation" class="active" data-dismiss="modal" id="addNotesSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
+                            <li role="presentation" class="cancel" data-dismiss="modal" id="addNotesCancel"><a href="#" style="text-align:center;">Cancel</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 
         <!-- Navigation Bar -->    
         <nav class="navbar navbar-default">

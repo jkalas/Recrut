@@ -72,12 +72,20 @@
     color: #2b669a;
 }
 
+.document-add {
+	float: right;
+	background-color: #2b669a;
+	border: 1px solid #2b669a;
+	border-radius: 4px;
+	color: #fff;
+}
+
 .document-button {
 	background-color: #fff;
 	border: 1px solid #2b669a;
 	border-radius: 4px;
-	background-color: #fff;
 	color: #2b669a;
+	line-height: 30px;
 }
 
 .divider{
