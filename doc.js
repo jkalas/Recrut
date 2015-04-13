@@ -6,9 +6,8 @@ var doc = function(name, id, src) {
 	//Initialize
 	this.name = name;
 	this.id = id;
-	this.src = src;
+	this.Src = src;
 	this.comments = [];
-
 	//Public Methods
 	this.toString = function() {
 		return this.name + ':' + this.id.toString();

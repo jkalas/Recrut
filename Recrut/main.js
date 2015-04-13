@@ -14,7 +14,7 @@ $(function() {
 	 jimmyDean.setEmail("jimmydean@college.harvard.edu");
 	 jimmyDean.setExperience("Harvard");
 	 jimmyDean.setPhoneNumber("(555) 123-6634");
-	 var resume = new doc("Resume", 1, "/resume.png");
+	 var resume = new doc("Resume", 1, "../img/resume.png");
      jimmyDean.addDocument(resume);
 	 bryanWilliams.setEmail("bryanwilly1234@gmail.com");
 	 bryanWilliams.setExperience("Stanford");
@@ -64,6 +64,8 @@ $(function() {
 
 		 	addApplicant(newApplicant);
 
+		 	$('#applicantModal').modal('hide'); 
+
 		 	document.getElementById("firstName").value = "";
 		 	document.getElementById("lastName").value = "";
 		 	document.getElementById("exp").value = "";
@@ -74,7 +76,7 @@ $(function() {
 	 	}
      });
 
-     $("applicantCancel").click(function(evt) {
+     $("#applicantCancel").click(function(evt) {
 	 		document.getElementById("firstName").value = "";
 		 	document.getElementById("lastName").value = "";
 		 	document.getElementById("exp").value = "";
@@ -92,6 +94,8 @@ $(function() {
 		 	var jobsList = document.getElementById('jobsList');
 		 	jobsList.innerHTML += "<li role=\"presentation\"><a href=\"#\">" + type + " - " + position + "</a></li>";
 
+		 	$('#jobModal').modal('hide'); 
+
 		 	document.getElementById("positionName").value = "";
 		 	document.getElementById("positionType").selectedIndex = 0;
 	 	} else {
@@ -105,8 +109,7 @@ $(function() {
      });
 
     $("#docCancel").click(function(evt) {
-	 	document.getElementById("positionName").value = "";
-	 	document.getElementById("positionType").selectedIndex = 0;
+	 	$('#docModal').modal('hide'); 
      });
 
     $("#groupSubmit").click(function(evt) {
@@ -117,6 +120,8 @@ $(function() {
 
 		 	var groupList = document.getElementById('groupList');
 		 	groupList.innerHTML += "<li role=\"presentation\"><a href=\"#\">" + groupName + "</a></li>";
+
+     		$('#groupModal').modal('hide'); 
 
 		 	document.getElementById("groupName").value = "";
 	 	} else {
@@ -142,26 +147,33 @@ $(function() {
 	 	var experience = document.createTextNode(entry.getExperience());
 	 	var email = document.createTextNode(entry.getEmail());
 	 	var phone = document.createTextNode(entry.getPhoneNumber());
+	 	
+	 	div.className = "panel panel-default";
+	 	var name = document.createElement("div");
+  		name.className = "panel-heading";
+  		name.innerHTML = "<h3 class=\"panel-title\">" + entry.firstName + " " + entry.lastName + "</h3>";
+  		div.appendChild(name);
 
-	 	div.appendChild(name);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(experience);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(email);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(phone);
-	 	div.appendChild(document.createElement("br"));
-	 	div.appendChild(document.createElement("br"));
+  		var body = document.createElement("div");
+  		body.className = "panel-body";
+  		body.innerHTML = entry.getExperience() + "<br>" + entry.getEmail() + "<br>" + entry.getPhoneNumber() + "<br>";
+	 	div.appendChild(body);
 
+	 	var docs = document.createElement("div");
+  		docs.className = "panel-body";
 	 	entry.documents.forEach(function(doc){
 	 		var docButton = document.createElement("button");
 	 		docButton.innerHTML = doc.name;
 	 		docButton.setAttribute('type', 'button');
-	 		div.appendChild(docButton);
+	 		docs.appendChild(docButton);
 	 		$(docButton).click(function(evt) {
+	 			console.log(doc.getSrc());
+	 			$('#docContent').css('background-image', 'url(' + doc.getSrc() + ')');
+
 	 			$('#docModal').modal('show'); 
      		});
 	 	});
+	 	div.appendChild(docs);
 
 	 	applicantList.appendChild(div);
      }
