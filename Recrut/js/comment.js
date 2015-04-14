@@ -18,9 +18,6 @@ var comment = function(id, commenter, text, title) {
 	this.xy;
 
 	//Public Methods
-	this.toString = function {
-		return tilte + ':' + id.toString();
-	}
 
 	this.getID = function() {
 		return this.id;

@@ -2,17 +2,20 @@
  *representation of an applicant and all applicable data
  */
 
- var applicant = function(firstName, lastName, id, group) {
+ var applicant = function(firstName, lastName, email, phoneNumber, education, id, group) {
  	//Initialize
  	this.firstName = firstName;
  	this.lastName = lastName;
 
  	//optional info
- 	this.email;
- 	this.phoneNumber;
- 	this.experience; //school or previous employer
+ 	this.email = email;
+ 	this.phoneNumber = phoneNumber;
+ 	this.education = education; //school or previous employer
  	this.documents = [];
  	this.comments = [];
+
+ 	//searchTags
+ 	this.searchTags = [firstName, lastName];
 
  	//non-applicant info
  	this.id = id;
@@ -20,9 +23,6 @@
  	this.group = group;
 
  	//Public Methods
- 	this.toString = function() {
- 		return this.firstName + ' ' + this.lastName + ':' + this.id.toString();
- 	}
 
  	this.equals = function(id) {
  		return (this.id == id);
@@ -64,16 +64,38 @@
  		this.phoneNumber = phoneNumber;
  	}
 
- 	this.getExperience = function() {
+ 	this.getEducation = function() {
  		return this.experience;
  	}
 
- 	this.setExperience = function(experience) {
+ 	this.setEducation = function(experience) {
  		this.experience = experience;
- 	} 	
+ 	}
+
+ 	this.getSearchTags = function() {
+ 		return this.searchTags;
+ 	}
+
+ 	this.addSearchTag = function(tag) {
+ 		this.searchTags.push(tag);
+ 	}
+
+ 	this.removeSearchTag = function(tag) {
+		for (var i = 0; i < this.searchTags.length(); i++) {
+			if (this.searchTags[i] == tag) {
+				this.searchTags.splice(i, 1);
+				return;
+			}
+		}
+		return;
+	}
 
  	this.getGroup = function() {
  		return this.group;
+ 	}
+
+ 	this.isInGroup = function(groupName) {
+ 		return (this.group == groupName);
  	}
 
  	this.setGroup = function(group) {

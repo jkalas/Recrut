@@ -6,13 +6,15 @@
  * a unique ID number is pushed onto the main part of the application
 **/
 
-var job = function(name, id) {
+var job = function(name, description, id) {
 	//Initialization
 
 	this.name = name;
+	this.description = description;
 	this.id = id;
 	this.tags = [];
-	this.groups = [];
+	this.groups = ["All"];
+	this.applicants = [];
 
 
 	//Public Methods
@@ -35,6 +37,14 @@ var job = function(name, id) {
 
 	this.setName = function(name) {
 		this.name = name;
+	}
+
+	this.getDescription = function() {
+		return this.description;
+	}
+
+	this.setDescription = function(description) {
+		this.description = name;
 	}
 
 	this.getTags = function() {
@@ -64,26 +74,54 @@ var job = function(name, id) {
 		return;
 	}
 
-	this.getGroup = function(id) {
-		for (var i = 0; i < this.groups; i++) {
-			if (this.groups[i].equals(id)) {
-				return this.groups[i]
-			}
-		}
-		return false;
+	this.getGroups = function() {
+		return this.groups;
 	}
 
-	this.addGroup = function(group) {
-		this.groups.push(group);
+	this.addGroup = function(groupName) {
+		this.groups.push(groupName);
 	}
 
-	this.removeGroup = function(id) {
-		for (var i = 0; i < this.groups; i++) {
-			if (this.groups[i].equals(id)) {
+	this.removeGroup = function(groupName) {
+		for (var i = 0; i < this.groups.length(); i++) {
+			if (this.groups[i] == groupName) {
 				this.groups.splice(i, 1);
 			}
 		}
 	}
 
+	this.getApplicant = function(id) {
+		for (var i = 0; i < this.applicants.length(); i++) {
+			if (this.applicants[i].equals(id)) {
+				return this.applicants[i]
+			}
+		}
+		return false;
+	}
+
+	this.addGroup = function(applicant) {
+		this.applicants.push(applicant);
+	}
+
+	this.removeGroup = function(id) {
+		for (var i = 0; i < this.applicants.length(); i++) {
+			if (this.applicants[i].equals(id)) {
+				this.applicants.splice(i, 1);
+			}
+		}
+	}
+
+	this.getApplicantsByGroup = function(groupName) {
+		var applicantsInGroup = [];
+		if (groupName == "All") {
+			return this.applicants;
+		}
+		for (var i = 0; i < this.applicants.length(); i++) {
+			if (this.applicants[i].isInGroup(groupName)) {
+				applicantsInGroup.push(this.applicants[i]);
+			}
+		}
+		return applicantsInGroup;
+	}
 
 }
