@@ -34,11 +34,126 @@
     </head>
 
     <body>
+      
+      <!-- Add position modal -->
+      <div class="modal fade" id="positionModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePositionModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">New Position</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <div class="form-group" id="inputPositionFormGroup">
+                  <label for="inputPosition" class="col-sm-2 control-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPosition" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-group" id="inputDescriptionFormGroup">
+                  <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDescription" placeholder="Description">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-10 col-sm-2">
+                    <button type="submit" class="btn btn-primary" id="createPositionModal">Create</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add group modal -->
+      <div class="modal fade" id="groupModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeGroupModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">New Group</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <div class="form-group" id="inputGroupFormGroup">
+                  <label for="inputGroup" class="col-sm-2 control-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputGroup" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-10 col-sm-2">
+                    <button type="submit" class="btn btn-primary" id="createGroupModal">Create</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add applicant modal -->
+      <div class="modal fade" id="applicantModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeApplicantModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">New Applicant</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <div class="form-group" id="inputApplicantFirstNameFormGroup">
+                  <label for="inputApplicantFirstName" class="col-sm-3 control-label">First Name*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputApplicantFirstName" placeholder="First Name">
+                  </div>
+                </div>
+                <div class="form-group" id="inputApplicantLastNameFormGroup">
+                  <label for="inputApplicantLastName" class="col-sm-3 control-label">Last Name*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputApplicantLastName" placeholder="Last Name">
+                  </div>
+                </div>
+                <div class="form-group" id="inputApplicantEducationFormGroup">
+                  <label for="inputApplicantEducation" class="col-sm-3 control-label">Education</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputApplicantEducation" placeholder="Education">
+                  </div>
+                </div>
+                <div class="form-group" id="inputApplicantEmailFormGroup">
+                  <label for="inputApplicantEmail" class="col-sm-3 control-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputApplicantEmail" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group" id="inputApplicantPhoneFormGroup">
+                  <label for="inputApplicantPhone" class="col-sm-3 control-label">Phone</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputApplicantPhone" placeholder="Phone">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-10 col-sm-2">
+                    <button type="submit" class="btn btn-primary" id="createApplicantModal">Create</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
         <!-- Navigation Bar -->    
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" id="navbar">
             <div class="container-fluid" style="background-color:#337ab7;">
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="color:#ffffff;font-family: 'Montserrat', sans-serif;">RECRÜT</a>
+                    <a class="navbar-brand" style="color:#ffffff;font-family:'Montserrat', sans-serif;">RECRÜT</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <p class="navbar-text navbar-right" style="color:#ffffff;">Signed in as John Doe</p>
@@ -48,49 +163,44 @@
 
         <div class="container-fluid">
             <div class="row">
-
                 <!-- Position List -->
                 <div class="col-md-2 pane">
                     <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active" id="addJob"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Position</a></li>
+                      <li role="presentation" class="active" id="addPosition"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Position</a></li>
                     </ul>
+                    <div class="input-group" style="padding-top: 5px;">
+                      <input type="text" class="form-control" placeholder="Search Positions">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+                      </span>
+                    </div>
                     <div class="mygrid-wrapper-div">
-                        <ul class="nav nav-pills nav-stacked" id="jobsList">
-                            <li class="folder" role="presentation"><a href="#">Full Time - MBA</a></li>
-                            <li class="folder" role="presentation"><a href="#">Full Time - Ads</a></li>
-                            <li class="folder" role="presentation"><a href="#">Full Time - Marketing</a></li>
-                            <li class="folder" role="presentation"><a href="#">Full Time - Sr. Engineer</a></li>
-                            <li class="folder" role="presentation"><a href="#">Part Time - Admin</a></li>
-                            <li class="folder" role="presentation"><a href="#">Part Time - Assistant</a></li>
-                            <li class="folder" role="presentation"><a href="#">Intern - MBA</a></li>
-                            <li class="folder" role="presentation"><a href="#">Intern - SW Engineer</a></li>
-                            <li class="folder" role="presentation"><a href="#">Intern - Trading</a></li>
-                            <li class="folder" role="presentation"><a href="#">Intern - Hardware</a></li>
-                            <li class="folder" role="presentation"><a href="#">Intern - Sales</a></li>
-                            <li class="folder" role="presentation"><a href="#">Intern - Marketing</a></li>
+                        <ul class="nav nav-pills nav-stacked" id="positionList">
+                            <li class="folder" role="presentation"><a href="#">Finance Intern</a></li>
                         </ul>
                     </div>
                 </div>
-
                 <!-- Group List -->
                 <div class="col-md-2 pane">
-                    <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active" id="addGroup"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Group</a></li>
-                    </ul>
-                    <div class="mygrid-wrapper-div">
-                        <ul class="nav nav-pills nav-stacked" id="groupList">
-                            <li class="folder" role="presentation"><a href="#">All</a></li>
-                            <li class="folder" role="presentation"><a href="#">Unread</a></li>
-                            <li class="folder" role="presentation"><a href="#">First Round</a></li>
-                            <li class="folder" role="presentation"><a href="#">Denied</a></li>
-                        </ul>
-                    </div>
+                  <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active" id="addGroup"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Group</a></li>
+                  </ul>
+                  <div class="input-group" style="padding-top: 5px;">
+                    <input type="text" class="form-control" placeholder="Search Groups">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+                    </span>
                   </div>
-
+                  <div class="mygrid-wrapper-div">
+                    <ul class="nav nav-pills nav-stacked" id="groupList">
+                      <li class="folder" role="presentation"><a href="#">All</a></li>
+                    </ul>
+                  </div>
+                </div>
                 <!-- Applicant List -->
                 <div class="col-md-8">
                     <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active" style="width:120px;" id="addApplicant"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Applicant</a></li>
+                      <li role="presentation" class="active" id="addApplicant"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Applicant</a></li>
                     </ul>
                     <div class="input-group" style="padding-top: 5px;">
                       <input type="text" class="form-control" placeholder="Search Applicants">
@@ -98,8 +208,10 @@
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
                       </span>
                     </div>
-                    <div class="mygrid-wrapper-div-applicant" id="applicantList">
-                        
+                    <div class="mygrid-wrapper-div">
+                      <ul class="nav nav-pills nav-stacked" id="applicantList">
+                        <li class="folder" role="presentation"><a href="#">Paul Colella</a></li>
+                      </ul>
                     </div>
                 </div>
             </div>
