@@ -14,257 +14,26 @@
         <link rel="stylesheet" type="text/css" href="external_dependencies/bootstrap-3.3.4-dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="external_dependencies/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="external_dependencies/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-        <link rel="stylesheet" type="text/css" href="mainLayout.css" />
-        <link rel="stylesheet" type="text/css" href="mainLayout.css" />
+        <link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
 
         <!-- Load fonts -->
         <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
-        <!-- Load any supplemental Javascript libraries here -->
+        <!-- Load external js -->
         <script type="text/javascript" src="external_dependencies/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="external_dependencies/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="external_dependencies/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-        <script type="text/javascript" src="../applicant.js"></script>
-        <script type="text/javascript" src="../job.js"></script>
-        <script type="text/javascript" src="../group.js"></script>
-        <script type="text/javascript" src="../doc.js"></script>
-        <script type="text/javascript" src="main.js"></script
+
+        <!-- Load js -->
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/applicant.js"></script>
+        <script type="text/javascript" src="js/job.js"></script>
+        <script type="text/javascript" src="js/group.js"></script>
+        <script type="text/javascript" src="js/doc.js"></script>
+        <script type="text/javascript" src="js/comment.js"></script>
     </head>
+
     <body>
-        <div id="groupMenu" style="display: none"class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="groupDDL" data-toggle="dropdown" aria-expanded="false">
-              <span class="selection" id="currentGroup">Unread</span>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="groupMenu" id="groupDropDown">
-              <li role="presentation"><a role="menuitem" href="#">Unread</a></li>
-              <li role="presentation"><a role="menuitem" href="#">First Round</a></li>
-              <li role="presentation"><a role="menuitem" href="#">Denied</a></li>
-            </ul>
-        </div>
-
-        <!-- Add applicant modal -->
-        <div class="modal fade" id="applicantModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add New Applicant</h4>
-                  </div>
-                  <div class="modal-body" align="center">
-                        First Name <input type="text" id="firstName"><br><br>
-                        Last Name <input type="text" id="lastName"><br><br>
-                        Experience <input type="text" id="exp"><br><br>
-                        Email <input type="text" id="email"><br><br>
-                        Phone <input type="text" id="phone"><br><br>
-                        Resume <input type="file" id="resume"><br><br>
-                        Cover Letter <input type="file" id="coverLetter"><br><br>
-                        <div id="applicantError" class="alert alert-danger" style="display: none" role="alert">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            <span class="sr-only">Error:</span>
-                            Enter a first name and last name.
-                        </div>
-                  </div>
-                  <div class="modal-footer">
-                    <ul class="nav nav-pills" style="float: right">
-                        <li role="presentation" class="active" id="applicantSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
-                        <li role="presentation" class="cancel" data-dismiss="modal" id="applicantCancel"><a href="#" style="text-align:center;">Cancel</a></li>
-                    </ul>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <!-- Add position modal -->
-            <div class="modal fade" id="jobModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add New Position</h4>
-                  </div>
-                  <div class="modal-body" align="center">
-                    <b>Position</b> <input type="text" id="positionName"><br><br>
-                    <div class="typeSelect">
-                    <b>Type</b> 
-                        <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="typeMenu" data-toggle="dropdown" aria-expanded="false">
-                          <span class="selection" id="typeSelection">Full Time</span>
-                          <span class="caret"></span>
-                        </button>
-                          <ul class="dropdown-menu dropdown-menu-center" role="menu" aria-labelledby="typeMenu" id="typeDropDown">
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Full Time</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Part Time</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entry Level</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Intern</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
-                          </ul> </button></div>
-                        </div><br>
-                        <div id="jobError" class="alert alert-danger" style="display: none" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        Enter a position name.
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <ul class="nav nav-pills" style="float: right">
-                        <li role="presentation" class="active" id="jobSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
-                        <li role="presentation" class="cancel" data-dismiss="modal" id="jobCancel"><a href="#" style="text-align:center;">Cancel</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Add group modal -->
-            <div class="modal fade" id="groupModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add New Group</h4>
-                  </div>
-                  <div class="modal-body" align="center">
-                    <b>Group Name</b> <input type="text" id="groupName"><br><br>
-                    <div id="groupError" class="alert alert-danger" style="display: none" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        Enter a group name.
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <ul class="nav nav-pills" style="float: right">
-                        <li role="presentation" class="active" id="groupSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
-                        <li role="presentation" class="cancel" data-dismiss="modal" id="groupCancel"><a href="#" style="text-align:center;">Cancel</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- View document modal -->
-            <div class="modal fade" id="docModal">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><br></h4>
-                      </div>
-                      <div class="modal-body" align="center" style="height: 650px; width: 595px; background-size: cover;" id="docContent">
-                      </div>
-                      <div class="modal-footer">
-                        <ul class="nav nav-pills" style="float: right">
-                            <li role="presentation" class="cancel" data-dismiss="modal" id="docCancel"><a href="#" style="text-align:center;">Close</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-            <!-- Email modal -->
-            <div class="modal fade" id="emailModal">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Email Applicant</h4>
-                      </div>
-                      <div class="modal-body">
-                      Subject <input type="text" id="emailSubject"><br><br>
-                      <textarea rows=10 cols=78 id="emailBody"></textarea><br><br>
-                      </div>
-                      <div class="modal-footer">
-                        <ul class="nav nav-pills" style="float: right">
-                            <li role="presentation" class="active" data-dismiss="modal" id="emailSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send</a></li>
-                            <li role="presentation" class="cancel" data-dismiss="modal" id="emailCancel"><a href="#" style="text-align:center;">Cancel</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-            <!-- Notes modal -->
-            <div class="modal fade" id="notesModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Notes</h4>
-                  </div>
-                  <div class="modal-body">
-                      <div class="tabbable">
-                          <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Interview 1</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Interview 2</a></li>
-                          </ul>
-                          <div class="tab-content">
-                            <div class="tab-pane active" id="tab1">
-                              <br>
-                              <p>Applicant has great problem solving skills!</p>
-                            </div>
-                            <div class="tab-pane" id="tab2">
-                              <br>
-                              <p>I enjoyed speaking with the applicant.</p>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                  <div class="modal-footer">
-                    <ul class="nav nav-pills" style="float: right">
-                        <li role="presentation" class="cancel" data-dismiss="modal" id="notesCancel"><a href="#" style="text-align:center;">Close</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <!-- Add documents modal -->
-            <div class="modal fade" id="addDocumentsModal">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Add notes</h4>
-                      </div>
-                      <div class="modal-body">
-                      Name <input type="text" id="newDocName"><br><br>
-                      Document <input type="file" id="newDoc"><br><br>
-                      </div>
-                      <div class="modal-footer">
-                        <ul class="nav nav-pills" style="float: right">
-                            <li role="presentation" class="active" data-dismiss="modal" id="addDocSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
-                            <li role="presentation" class="cancel" data-dismiss="modal" id="addDocCancel"><a href="#" style="text-align:center;">Cancel</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-            <!-- Add notes modal -->
-            <div class="modal fade" id="addNotesModal">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Add notes</h4>
-                      </div>
-                      <div class="modal-body">
-                      <textarea rows=10 cols=78 id="newNotes"></textarea><br><br>
-                      </div>
-                      <div class="modal-footer">
-                        <ul class="nav nav-pills" style="float: right">
-                            <li role="presentation" class="active" data-dismiss="modal" id="addNotesSubmit"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></li>
-                            <li role="presentation" class="cancel" data-dismiss="modal" id="addNotesCancel"><a href="#" style="text-align:center;">Cancel</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
         <!-- Navigation Bar -->    
         <nav class="navbar navbar-default">
             <div class="container-fluid" style="background-color:#337ab7;">
