@@ -6,8 +6,11 @@ $(function() {
 	var selectedGroupIndex = "All";
 
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
-	var newApp = new applicant("firstNamffdddde", "lastName", "email", "phoneNumber", "education", "id", "ss");
-	defaultPosition.addApplicant(newApp);
+	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", "id", "dd");
+	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", "id", "dd");
+
+	defaultPosition.addApplicant(defaultApplicant1);
+	defaultPosition.addApplicant(defaultApplicant2);
     positionSet.push(defaultPosition);
 
     var defaultPosition2 = new job("Sales Intern", "Default", positionSet.length);
@@ -21,11 +24,14 @@ $(function() {
 			$("#position-selectable-" + index).on('click', function(evt) {
 				for (var i = 0; i < positionSet.length; i++) {
 					$("#position-button-" + i).removeClass("active");
+					$("#position-button-" + i).removeClass("folder-active");
+					$("#position-button-" + i).addClass("folder");
 				}
 
 			 	var positionID = evt.target.id.split("-")[2];
 			 	selectedPositionIndex = positionID;
 			 	$("#position-button-" + positionID).addClass("active");
+			 	$("#position-button-" + positionID).addClass("folder-active");
 			 	
 			 	updateGroupRows("All");
 			 	selectedGroupIndex = "All";
@@ -36,6 +42,7 @@ $(function() {
 		selectedGroupIndex = "All";
 		updateApplicantRows();
 		$("#position-button-" + selectedRow).addClass("active");
+		$("#position-button-" + selectedRow).addClass("folder-active");
 	}
 
 	var updateGroupRows = function(selectedGroup) {
@@ -47,16 +54,20 @@ $(function() {
 			$("#group-selectable-" + groups[index]).on('click', function(evt) {
 				for (var i = 0; i < groups.length; i++) {
 					$("#group-button-" + groups[i]).removeClass("active");
+					$("#group-button-" + groups[i]).removeClass("folder-active");
+					$("#group-button-" + groups[i]).addClass("folder");
 				}
 
 				var groupID = evt.target.id.split("-")[2];
 			 	$("#group-button-" + groupID).addClass("active");
+			 	$("#group-button-" + groupID).addClass("folder-active");
 
 			 	selectedGroupIndex = groupID;
 			 	updateApplicantRows();
 			});
 		}
 		$("#group-button-" + selectedGroup).addClass("active");
+		$("#group-button-" + selectedGroup).addClass("folder-active");
 		selectedGroupIndex = selectedGroup;
 		updateApplicantRows();
 	}
@@ -66,13 +77,13 @@ $(function() {
 		var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
 		for (var index = 0; index < applicants.length; index++) {
 			var applicantList = document.getElementById('applicantList');
-			$("#applicantList").append("<li class=\"folder \" role=\"presentation\"><a href=\"#\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "</a></li>");
+			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "</div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>Education:</td><td>" + applicants[index].getEducation() + "</td></tr><tr><td>Email:</td><td><a href=\"#\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>Phone:</td><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents</th></tr><tr><td><a>Cover Letter</a></td></tr><tr><td><a>Resume</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments</th></tr><tr><td><a>Interview 1</a></td></tr><tr><td><a>Interview 2</a></td></tr></table></div></div></div>");
 		}
 	}
 
-  //  updatePositionRows(0);
-   // updateGroupRows("All");
-   // updateApplicantRows();
+    updatePositionRows(0);
+    updateGroupRows("All");
+    updateApplicantRows();
 
 
 	$("#addPosition").click(function(evt) {

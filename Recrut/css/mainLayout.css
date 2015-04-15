@@ -69,7 +69,14 @@
     font-family:'Glyphicons Halflings';
     content:"\e080";
     float: right;
-    color: #2b669a;
+    color: #337ab7;
+}
+
+.folder-active a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e080";
+    float: right;
+    color: #ffffff;
 }
 
 .document-add {

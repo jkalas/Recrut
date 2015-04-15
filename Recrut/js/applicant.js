@@ -65,11 +65,11 @@
  	}
 
  	this.getEducation = function() {
- 		return this.experience;
+ 		return this.education;
  	}
 
- 	this.setEducation = function(experience) {
- 		this.experience = experience;
+ 	this.setEducation = function(education) {
+ 		this.education = education;
  	}
 
  	this.getSearchTags = function() {
