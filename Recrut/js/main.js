@@ -3,20 +3,81 @@
 $(function() {
 	var positionSet = [];
 	var selectedPositionIndex = 0;
+	var selectedGroupIndex = "All";
 
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
+	var newApp = new applicant("firstNamffdddde", "lastName", "email", "phoneNumber", "education", "id", "ss");
+	defaultPosition.addApplicant(newApp);
     positionSet.push(defaultPosition);
 
     var defaultPosition2 = new job("Sales Intern", "Default", positionSet.length);
     positionSet.push(defaultPosition2);
 
+	var updatePositionRows = function(selectedRow) {
+		$("#positionList").empty();
+		for (var index = 0; index < positionSet.length; index++) {
+			var positionList = document.getElementById('positionList');
+	 		$("#positionList").append("<li class=\"folder position-button\" role=\"presentation\" id=\"position-button-" + index + "\"><a href=\"#\" class=\"position-selectable\" id=\"position-selectable-" + index + "\">" + positionSet[index].getName() + "</a></li>");
+			$("#position-selectable-" + index).on('click', function(evt) {
+				for (var i = 0; i < positionSet.length; i++) {
+					$("#position-button-" + i).removeClass("active");
+				}
+
+			 	var positionID = evt.target.id.split("-")[2];
+			 	selectedPositionIndex = positionID;
+			 	$("#position-button-" + positionID).addClass("active");
+			 	
+			 	updateGroupRows("All");
+			 	selectedGroupIndex = "All";
+			 	updateApplicantRows();
+		    });
+		}
+		updateGroupRows("All");
+		selectedGroupIndex = "All";
+		updateApplicantRows();
+		$("#position-button-" + selectedRow).addClass("active");
+	}
+
+	var updateGroupRows = function(selectedGroup) {
+		$("#groupList").empty();
+		var groups = positionSet[selectedPositionIndex].getGroups();
+		for (var index = 0; index < groups.length; index++) {
+			var groupList = document.getElementById('groupList');
+			$("#groupList").append("<li class=\"folder group-button\" role=\"presentation\" id=\"group-button-" + groups[index] + "\"><a href=\"#\" class=\"group-selectable\" id=\"group-selectable-" + groups[index] + "\">" + groups[index] + "</a></li>");
+			$("#group-selectable-" + groups[index]).on('click', function(evt) {
+				for (var i = 0; i < groups.length; i++) {
+					$("#group-button-" + groups[i]).removeClass("active");
+				}
+
+				var groupID = evt.target.id.split("-")[2];
+			 	$("#group-button-" + groupID).addClass("active");
+
+			 	selectedGroupIndex = groupID;
+			 	updateApplicantRows();
+			});
+		}
+		$("#group-button-" + selectedGroup).addClass("active");
+		selectedGroupIndex = selectedGroup;
+		updateApplicantRows();
+	}
+
+	var updateApplicantRows = function() {
+		$("#applicantList").empty();
+		var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
+		for (var index = 0; index < applicants.length; index++) {
+			var applicantList = document.getElementById('applicantList');
+			$("#applicantList").append("<li class=\"folder \" role=\"presentation\"><a href=\"#\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "</a></li>");
+		}
+	}
+
+  //  updatePositionRows(0);
+   // updateGroupRows("All");
+   // updateApplicantRows();
 
 
-
-
-	 $("#addPosition").click(function(evt) {
-	 	$('#positionModal').modal('show'); 
-     });
+	$("#addPosition").click(function(evt) {
+		$('#positionModal').modal('show'); 
+    });
 
     $("#createPositionModal").click(function(evt) {
      	var name = document.getElementById("inputPosition").value;
@@ -48,9 +109,8 @@ $(function() {
 
      		$("#inputPositionFormGroup").removeClass("has-error");
      		$("#inputDescriptionFormGroup").removeClass("has-error");
-
-     		var positionList = document.getElementById('positionList');
-		 	positionList.innerHTML += "<li class=\"folder position-button\" role=\"presentation\" id=\"position-button-" + index + "\"><a href=\"#\" class=\"position-selectable\" id=\"position-selectable-" + index + "\">" + name + "</a></li>";
+     		selectedPositionIndex = index;
+     		updatePositionRows(index);
      	}
      });
 
@@ -69,8 +129,14 @@ $(function() {
 
     $("#createGroupModal").click(function(evt) {
      	var groupName = document.getElementById("inputGroup").value;
-
-     	if (!groupName) {
+     	var listGroups = positionSet[selectedPositionIndex].getGroups();
+     	var sameName = false;
+     	for (var i = 0; i < listGroups.length; i++) {
+     		if (groupName == listGroups[i]) {
+     			sameName = true;
+     		}
+     	}
+     	if (!groupName || sameName) {
      		$("#inputGroupFormGroup").addClass("has-error");
      	}
      	else {
@@ -83,8 +149,7 @@ $(function() {
 
      		$("#inputGroupFormGroup").removeClass("has-error");
 
-     		var groupList = document.getElementById('groupList');
-		 	groupList.innerHTML += "<li class=\"folder group-button\" role=\"presentation\" id=\"group-button-" + groupName + "\"><a href=\"#\" class=\"group-selectable\" id=\"group-selectable-" + groupName + "\">" + groupName + "</a></li>";
+     		updateGroupRows(groupName);
      	}
      });
 
@@ -121,6 +186,10 @@ $(function() {
 
      	if (firstName && lastName) {
      		// create new applicant
+     		var newApplicant = new applicant(firstName, lastName, email, phone, education, 0, selectedGroupIndex);
+     		positionSet[selectedPositionIndex].addApplicant(newApplicant);
+
+     		updateApplicantRows();
 
      		$('#applicantModal').modal('hide');
 
@@ -133,8 +202,6 @@ $(function() {
      		$("#inputApplicantFirstNameFormGroup").removeClass("has-error");
      		$("#inputApplicantLastNameFormGroup").removeClass("has-error");
 
-     		var applicantList = document.getElementById('applicantList');
-		 	applicantList.innerHTML += "<li class=\"folder\" role=\"presentation\"><a href=\"#\">" + firstName + " " + lastName + "</a></li>";
      	}
      });
 
@@ -151,40 +218,6 @@ $(function() {
 
 
 
-
-
-	$(".position-selectable").click(function(evt) {
-		alert("asdfaa");
-		for (var i = 0; i < positionSet.length; i++) {
-			$("#position-button-" + i).removeClass("active");
-		}
-
-	 	var positionID = evt.target.id.split("-")[2];
-	 	selectedPositionIndex = positionID;
-	 	$("#position-button-" + positionID).addClass("active");
-	 	
-	 	$("#groupList").empty();
-	 	var groups = positionSet[positionID].getGroups();
-	 	var groupList = document.getElementById('groupList');
-
-	 	for (var i = 0; i < groups.length; i++) {
-		 	groupList.innerHTML += "<li class=\"folder group-button\" role=\"presentation\" id=\"group-button-" + groups[i] + "\"><a href=\"#\" class=\"group-selectable\" id=\"group-selectable-" + groups[i] + "\">" + groups[i] + "</a></li>";
-	 	}
-
-	 	$("#group-button-All").addClass("active");
-     });
-
-
-	$(".group-selectable").click(function(evt) {
-		var groups = positionSet[selectedPositionIndex].getGroups();
-		alert("s");
-		for (var i = 0; i < groups.length; i++) {
-			$("#group-button-" + groups[i]).removeClass("active");
-		}
-
-		var groupID = evt.target.id.split("-")[2];
-	 	$("#group-button-" + groupID).addClass("active");
-	});
 
 });
 

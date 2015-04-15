@@ -116,7 +116,7 @@ var job = function(name, description, id) {
 		if (groupName == "All") {
 			return this.applicants;
 		}
-		for (var i = 0; i < this.applicants.length(); i++) {
+		for (var i = 0; i < this.applicants.length; i++) {
 			if (this.applicants[i].isInGroup(groupName)) {
 				applicantsInGroup.push(this.applicants[i]);
 			}
