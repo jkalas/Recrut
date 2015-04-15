@@ -1,15 +1,28 @@
 // This allows the Javascript code inside this block to only run when the page
 // has finished loading in the browser.
 $(function() {
+	var positionSet = [];
+	var selectedPositionIndex = 0;
+
+	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
+    positionSet.push(defaultPosition);
+
+    var defaultPosition2 = new job("Sales Intern", "Default", positionSet.length);
+    positionSet.push(defaultPosition2);
+
+
+
+
+
 	 $("#addPosition").click(function(evt) {
 	 	$('#positionModal').modal('show'); 
      });
 
     $("#createPositionModal").click(function(evt) {
-     	var position = document.getElementById("inputPosition").value;
+     	var name = document.getElementById("inputPosition").value;
      	var description = document.getElementById("inputDescription").value;
 
-     	if (!position) {
+     	if (!name) {
      		$("#inputPositionFormGroup").addClass("has-error");
      	}
      	else {
@@ -22,8 +35,11 @@ $(function() {
      		$("#inputDescriptionFormGroup").removeClass("has-error");
      	}
 
-     	if (position && description) {
+     	if (name && description) {
      		// create new job
+     		var index = positionSet.length;
+     		var newPosition = new job(name, description, index);
+     		positionSet.push(newPosition);
 
      		$('#positionModal').modal('hide');
 
@@ -34,7 +50,7 @@ $(function() {
      		$("#inputDescriptionFormGroup").removeClass("has-error");
 
      		var positionList = document.getElementById('positionList');
-		 	positionList.innerHTML += "<li class=\"folder\" role=\"presentation\"><a href=\"#\">" + position + "</a></li>";
+		 	positionList.innerHTML += "<li class=\"folder position-button\" role=\"presentation\" id=\"position-button-" + index + "\"><a href=\"#\" class=\"position-selectable\" id=\"position-selectable-" + index + "\">" + name + "</a></li>";
      	}
      });
 
@@ -59,6 +75,8 @@ $(function() {
      	}
      	else {
      		// create new group
+     		var selectedPosition = positionSet[selectedPositionIndex];
+     		positionSet[selectedPositionIndex].addGroup(groupName);
 
      		$('#groupModal').modal('hide');
      		document.getElementById("inputGroup").value = "";
@@ -66,7 +84,7 @@ $(function() {
      		$("#inputGroupFormGroup").removeClass("has-error");
 
      		var groupList = document.getElementById('groupList');
-		 	groupList.innerHTML += "<li class=\"folder\" role=\"presentation\"><a href=\"#\">" + groupName + "</a></li>";
+		 	groupList.innerHTML += "<li class=\"folder group-button\" role=\"presentation\" id=\"group-button-" + groupName + "\"><a href=\"#\" class=\"group-selectable\" id=\"group-selectable-" + groupName + "\">" + groupName + "</a></li>";
      	}
      });
 
@@ -131,5 +149,50 @@ $(function() {
      	$("#inputApplicantLastNameFormGroup").removeClass("has-error");
      });
 
+
+
+
+
+	$(".position-selectable").click(function(evt) {
+		alert("asdfaa");
+		for (var i = 0; i < positionSet.length; i++) {
+			$("#position-button-" + i).removeClass("active");
+		}
+
+	 	var positionID = evt.target.id.split("-")[2];
+	 	selectedPositionIndex = positionID;
+	 	$("#position-button-" + positionID).addClass("active");
+	 	
+	 	$("#groupList").empty();
+	 	var groups = positionSet[positionID].getGroups();
+	 	var groupList = document.getElementById('groupList');
+
+	 	for (var i = 0; i < groups.length; i++) {
+		 	groupList.innerHTML += "<li class=\"folder group-button\" role=\"presentation\" id=\"group-button-" + groups[i] + "\"><a href=\"#\" class=\"group-selectable\" id=\"group-selectable-" + groups[i] + "\">" + groups[i] + "</a></li>";
+	 	}
+
+	 	$("#group-button-All").addClass("active");
+     });
+
+
+	$(".group-selectable").click(function(evt) {
+		var groups = positionSet[selectedPositionIndex].getGroups();
+		alert("s");
+		for (var i = 0; i < groups.length; i++) {
+			$("#group-button-" + groups[i]).removeClass("active");
+		}
+
+		var groupID = evt.target.id.split("-")[2];
+	 	$("#group-button-" + groupID).addClass("active");
+	});
+
 });
+
+
+
+
+
+
+
+
 

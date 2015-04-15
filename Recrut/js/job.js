@@ -99,11 +99,11 @@ var job = function(name, description, id) {
 		return false;
 	}
 
-	this.addGroup = function(applicant) {
+	this.addApplicant = function(applicant) {
 		this.applicants.push(applicant);
 	}
 
-	this.removeGroup = function(id) {
+	this.removeApplicant = function(id) {
 		for (var i = 0; i < this.applicants.length(); i++) {
 			if (this.applicants[i].equals(id)) {
 				this.applicants.splice(i, 1);
