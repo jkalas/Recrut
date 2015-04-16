@@ -237,6 +237,68 @@
         </div>
       </div>
 
+      <!-- CommentsModal -->
+      <div class="modal fade" id="commentModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="commentModalName">Comments on John Doe</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <ul class="nav nav-pills" id="commentListModal">
+                <li role="presentation" id="comment0"><a href="#">Comment 1</a></li>
+                <li role="presentation" id="comment1"><a href="#">Comment 2</a></li>
+              </ul>
+            </div>
+            <div style="margin: 20px">
+              <h5 id="commenterNameModal">By: Paul Colella</h5>
+              <p1 id="commentTextModal">John Doe had a great personality and seemed like a real go getter but he deffinitely leaves something to be desired in the technical skill area. I would consider taking him on as an intern for the summer and then revaluating from their</p1>
+            </div>
+            <div style="margin:20px;aligh:right;"><a href="#"><span class="glyphicon glyphicon-plus"></span> Comment</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add CommentsModal -->
+      <div class="modal fade" id="addCommentModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAddCommentModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addCommenTitle">Add Comment to John Doe</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <div class="form-group" id="inputTitleFormGroup">
+                  <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+                  </div>
+                </div>
+                <div class="form-group" id="inputCommenterNameFormGroup">
+                  <label for="inputCommenterName" class="col-sm-2 control-label">Commenter</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputCommenterName" placeholder="Commenter's Name">
+                  </div>
+                </div>
+                <div class="form-group" id="inputAddCommentFormGroup">
+                  <label for="inputComment" class="col-sm-2 control-label">Comment</label>
+                  <div class="col-sm-10">
+                    <textarea style="resize:none" rows="10" class="form-control" id="inputComment" placeholder="Type Comment Here"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-10 col-sm-2">
+                    <button type="submit" class="btn btn-primary" id="createAddDocModal">Add</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <!-- Navigation Bar -->    
         <nav class="navbar navbar-default" id="navbar">
             <div class="container-fluid" style="background-color:#337ab7;">
