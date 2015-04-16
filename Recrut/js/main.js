@@ -7,14 +7,22 @@ $(function() {
 	var currentApplicantID = 2;
 
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
-	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", 0, "dd");
-	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", 1, "dd");
+	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", 0, "Group");
+	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", 1, "Group");
 
 	defaultPosition.addApplicant(defaultApplicant1);
 	defaultPosition.addApplicant(defaultApplicant2);
     positionSet.push(defaultPosition);
 
     var defaultPosition2 = new job("Sales Intern", "Default", positionSet.length);
+
+
+    var defaultApplicant3 = new applicant("Paul", "Colella", "pc@caltech.edu", "(322) 555-2422", "Cal Tech", 0, "Group");
+    var defaultApplicant4 = new applicant("Billy", "Bob", "billy@florida.edu", "(545) 444-4455", "Florida", 1, "Group");
+
+    defaultPosition2.addApplicant(defaultApplicant3);
+    defaultPosition2.addApplicant(defaultApplicant4);
+
     positionSet.push(defaultPosition2);
 
 	var updatePositionRows = function(selectedRow) {
@@ -23,6 +31,7 @@ $(function() {
 			var positionList = document.getElementById('positionList');
 	 		$("#positionList").append("<li class=\"folder position-button\" role=\"presentation\" id=\"position-button-" + index + "\"><a href=\"#\" class=\"position-selectable\" id=\"position-selectable-" + index + "\">" + positionSet[index].getName() + "</a></li>");
 			$("#position-selectable-" + index).on('click', function(evt) {
+                document.getElementById("search-field-applicant").value = "";
 				for (var i = 0; i < positionSet.length; i++) {
 					$("#position-button-" + i).removeClass("active");
 					$("#position-button-" + i).removeClass("folder-active");
@@ -53,6 +62,7 @@ $(function() {
 			var groupList = document.getElementById('groupList');
 			$("#groupList").append("<li class=\"folder group-button\" role=\"presentation\" id=\"group-button-" + groups[index] + "\"><a href=\"#\" class=\"group-selectable\" id=\"group-selectable-" + groups[index] + "\">" + groups[index] + "</a></li>");
 			$("#group-selectable-" + groups[index]).on('click', function(evt) {
+                document.getElementById("search-field-applicant").value = "";
 				for (var i = 0; i < groups.length; i++) {
 					$("#group-button-" + groups[i]).removeClass("active");
 					$("#group-button-" + groups[i]).removeClass("folder-active");
@@ -73,12 +83,31 @@ $(function() {
 		updateApplicantRows();
 	}
 
-	var updateApplicantRows = function() {
+	var updateApplicantRows = function(search) {
 		$("#applicantList").empty();
-		var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
+        var applicants;
+        if (!search) {
+            applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
+        }
+        else {
+            applicants = positionSet[selectedPositionIndex].getApplicantsByGroupAndSearch(selectedGroupIndex, search);
+        }
 		for (var index = 0; index < applicants.length; index++) {
+
+            var group_dropdown = "";
+            var groupsHighlighted = positionSet[selectedPositionIndex].getGroups();
+
+            if (groupsHighlighted.length > 1) {
+                group_dropdown += "<div class=\"btn-group\" style=\"float:right;\"><button type=\"button\" class=\"btn btn-primary btn-xs dropdown-toggle\" id=\"dropdown-btn-title-" + applicants[index].getID() + "\" data-toggle=\"dropdown\" aria-expanded=\"false\">" + applicants[index].getGroup() + "<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" id=\"dropdown-list-" + applicants[index].getID() + "\">";
+                for (var k = 1; k < groupsHighlighted.length; k++) {
+                    group_dropdown += "<li><a href=\"#\" id=\"" + applicants[index].getID() + "-" + groupsHighlighted[k] + "\">" + groupsHighlighted[k] + "</a></li>";
+                }
+                group_dropdown += "</ul></div>";
+            }
+
+
 			var applicantList = document.getElementById('applicantList');
-			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "<div class=\"btn-group\" style=\"float:right;\"><button type=\"button\" class=\"btn btn-primary btn-xs dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">Group <span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\"><li><a href=\"#\">Group</a></li><li><a href=\"#\">Another action</a></li><li><a href=\"#\">Something else here</a></li></ul></div></div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>Education:</td><td>" + applicants[index].getEducation() + "</td></tr><tr><td>Email:</td><td><a href=\"#\" class=\"emailLink\" id=\"emailLink-" + applicants[index].getID() + "\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>Phone:</td><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents (<a href=\"#\" id=\"add-doc-" + applicants[index].getID() + "\">add</a>)</th></tr><tr><td><a href=\"#\" id=\"doc-coverLetter-" + applicants[index].getID() + "\">Cover Letter</a></td></tr><tr><td><a href=\"#\" id=\"doc-resume-" + applicants[index].getID() + "\">Resume</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments (<a href=\"#\" id=\"add-comment-" + applicants[index].getID() + "\">add</a>)</th></tr><tr><td><a href=\"#\" id=\"comment-1-" + applicants[index].getID() + "\">Interview 1</a></td></tr><tr><td><a href=\"#\" id=\"comment-2-" + applicants[index].getID() + "\">Interview 2</a></td></tr></table></div></div></div>");
+			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + group_dropdown + "</div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>Education:</td><td>" + applicants[index].getEducation() + "</td></tr><tr><td>Email:</td><td><a href=\"#\" class=\"emailLink\" id=\"emailLink-" + applicants[index].getID() + "\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>Phone:</td><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents (<a href=\"#\" id=\"add-doc-" + applicants[index].getID() + "\">add</a>)</th></tr><tr><td><a href=\"#\" id=\"doc-coverLetter-" + applicants[index].getID() + "\">Cover Letter</a></td></tr><tr><td><a href=\"#\" id=\"doc-resume-" + applicants[index].getID() + "\">Resume</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments (<a href=\"#\" id=\"add-comment-" + applicants[index].getID() + "\">add</a>)</th></tr><tr><td><a href=\"#\" id=\"comment-interview1-" + applicants[index].getID() + "\">Interview 1</a></td></tr><tr><td><a href=\"#\" id=\"comment-interview2-" + applicants[index].getID() + "\">Interview 2</a></td></tr></table></div></div></div>");
 			var emailOfApplicant = applicants[index].getEmail();
 			$("#emailLink-" + applicants[index].getID()).on('click', function(evt) {
 				var applicantID = evt.target.id.split("-")[1];
@@ -103,29 +132,26 @@ $(function() {
 				$("#docModalImageHolder").append("<img src=\"graphics/resume.png\" alt=\"Resume\" style=\"width:536px;height:694px\">");
 				$('#docModal').modal('show');
 			});
+            $("#comment-interview1-" + applicants[index].getID()).on('click', function(evt) {
+                $('#commentModal1').modal('show');
+            });
+            $("#comment-interview2-" + applicants[index].getID()).on('click', function(evt) {
+                $('#commentModal2').modal('show');
+            });
 			$("#add-doc-" + applicants[index].getID()).on('click', function(evt) {
 				$('#addDocModal').modal('show');
 			});
             $("#add-comment-" + applicants[index].getID()).on('click', function(evt) {
                 $('#addCommentModal').modal('show');
-            })
-            //Hard coded
-            $("#comment-1-" + applicants[index].getID()).on('click', function(evt) {
-                $('#commentModal').modal('show');
-            })
-            $("#comment-2-" + applicants[index].getID()).on('click', function(evt) {
-                $('#commentModal').modal('show');
+            });
+            $("#dropdown-list-" + applicants[index].getID()).on('click', function(evt) {
+                $('#dropdown-btn-title-' + evt.target.id.split("-")[0]).empty();
+                $('#dropdown-btn-title-' + evt.target.id.split("-")[0]).append(evt.target.id.split("-")[1] + "<span class=\"caret\"></span>");
+
+                positionSet[selectedPositionIndex].getApplicant(evt.target.id.split("-")[0]).setGroup(evt.target.id.split("-")[1]);
             })
 		}
 	}
-
-    // var updateCommentModal = function(index) {
-    //     $("#applicantList").empty();
-    //     var comments = applicants[index].getComments();
-    //     for (var i = 0; i < comments.length(); i++) {
-    //         $("#applicantList").
-    //     }
-    // }
 
     updatePositionRows(0);
     updateGroupRows("All");
@@ -242,7 +268,11 @@ $(function() {
 
      	if (firstName && lastName) {
      		// create new applicant
-     		var newApplicant = new applicant(firstName, lastName, email, phone, education, currentApplicantID, selectedGroupIndex);
+            var selectedGroupApplicant = selectedGroupIndex;
+            if (selectedGroupApplicant == "All") {
+                selectedGroupApplicant = "Group";
+            }
+     		var newApplicant = new applicant(firstName, lastName, email, phone, education, currentApplicantID, selectedGroupApplicant);
      		positionSet[selectedPositionIndex].addApplicant(newApplicant);
      		currentApplicantID = currentApplicantID + 1;
 
@@ -319,6 +349,52 @@ $(function() {
 
 	 	$('#addDocModal').modal('hide');
      });
+
+    $("#createAddCommentModal").click(function(evt) {
+        var title = document.getElementById("inputTitle").value;
+        var commenterName = document.getElementById("inputCommenterName").value;
+        var comment = document.getElementById("inputComment").value;
+
+        if (!title) {
+            $("#inputTitleFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputTitleFormGroup").removeClass("has-error");
+        }
+        if (!commenterName) {
+            $("#inputCommenterNameFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputCommenterNameFormGroup").removeClass("has-error");
+        }
+        if (!comment) {
+            $("#inputAddCommentFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputAddCommentFormGroup").removeClass("has-error");
+        }
+
+        if (title && commenterName && comment) {
+            $('#addCommentModal').modal('hide');
+            document.getElementById("inputTitle").value = "";
+            document.getElementById("inputCommenterName").value = "";
+            document.getElementById("inputComment").value = "";
+
+            $("#inputTitleFormGroup").removeClass("has-error");
+            $("#inputCommenterNameFormGroup").removeClass("has-error");
+            $("#inputAddCommentFormGroup").removeClass("has-error");
+        }
+
+     });
+
+    $("#search-button-applicant").click(function(evt) {
+        var searchValue = document.getElementById("search-field-applicant").value;
+        if (searchValue) {
+            updateApplicantRows(searchValue);
+        }
+        document.getElementById("search-field-applicant").value = "";
+     });
+
 });
 
 
