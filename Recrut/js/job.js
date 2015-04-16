@@ -52,7 +52,7 @@ var job = function(name, description, id) {
 	}
 
 	this.hasTag = function(tag) {
-		for (var i = 0; i < this.tags.length(); i++) {
+		for (var i = 0; i < this.tags.length; i++) {
 			if (this.tags[i] == tag) {
 				return true;
 			}
@@ -65,7 +65,7 @@ var job = function(name, description, id) {
 	}
 
 	this.removeTag = function(tag) {
-		for (var i = 0; i < this.tags.length(); i++) {
+		for (var i = 0; i < this.tags.length; i++) {
 			if (this.tags[i] == tag) {
 				this.tags.splice(i, 1);
 				return;
@@ -83,7 +83,7 @@ var job = function(name, description, id) {
 	}
 
 	this.removeGroup = function(groupName) {
-		for (var i = 0; i < this.groups.length(); i++) {
+		for (var i = 0; i < this.groups.length; i++) {
 			if (this.groups[i] == groupName) {
 				this.groups.splice(i, 1);
 			}
@@ -91,7 +91,7 @@ var job = function(name, description, id) {
 	}
 
 	this.getApplicant = function(id) {
-		for (var i = 0; i < this.applicants.length(); i++) {
+		for (var i = 0; i < this.applicants.length; i++) {
 			if (this.applicants[i].equals(id)) {
 				return this.applicants[i]
 			}
@@ -104,7 +104,7 @@ var job = function(name, description, id) {
 	}
 
 	this.removeApplicant = function(id) {
-		for (var i = 0; i < this.applicants.length(); i++) {
+		for (var i = 0; i < this.applicants.length; i++) {
 			if (this.applicants[i].equals(id)) {
 				this.applicants.splice(i, 1);
 			}
