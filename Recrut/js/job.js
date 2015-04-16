@@ -128,4 +128,19 @@ var job = function(name, description, id) {
 		return applicantsInGroup;
 	}
 
+	this.getApplicantsByGroupAndSearch = function(groupName, search) {
+		var applicantsInGroupAndSearch = [];
+		if (groupName == "All") {
+			return this.applicants;
+		}
+		for (var i = 0; i < this.applicants.length; i++) {
+			if (this.applicants[i].isInGroup(groupName)) {
+				if (this.applicants[i].searchByKeys(search)) {
+					applicantsInGroupAndSearch.push(this.applicants[i]);
+				}
+			}
+		}
+		return applicantsInGroupAndSearch
+	}
+
 }
