@@ -65,11 +65,11 @@
  	}
 
  	this.getEducation = function() {
- 		return this.experience;
+ 		return this.education;
  	}
 
- 	this.setEducation = function(experience) {
- 		this.experience = experience;
+ 	this.setEducation = function(education) {
+ 		this.education = education;
  	}
 
  	this.getSearchTags = function() {
@@ -81,13 +81,26 @@
  	}
 
  	this.removeSearchTag = function(tag) {
-		for (var i = 0; i < this.searchTags.length(); i++) {
+		for (var i = 0; i < this.searchTags.length; i++) {
 			if (this.searchTags[i] == tag) {
 				this.searchTags.splice(i, 1);
 				return;
 			}
 		}
 		return;
+	}
+
+	this.searchByKeys = function(search) {
+		var searchKeys = search.split(" ");
+		var tags = this.getSearchTags();
+		for (var j = 0; j < searchKeys.length; j++) {
+			for (var k = 0; k < tags.length; k++) {
+				if (tags[k].indexOf(searchKey[j]) > -1) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
  	this.getGroup = function() {

@@ -12,9 +12,9 @@ var job = function(name, description, id) {
 	this.name = name;
 	this.description = description;
 	this.id = id;
-	this.tags = [];
 	this.groups = ["All"];
 	this.applicants = [];
+	this.searchTags = description.split(" ").concat(name.split(" "));
 
 
 	//Public Methods
@@ -47,31 +47,35 @@ var job = function(name, description, id) {
 		this.description = name;
 	}
 
-	this.getTags = function() {
-		return this.tags;
-	}
+	this.getSearchTags = function() {
+ 		return this.searchTags;
+ 	}
 
-	this.hasTag = function(tag) {
-		for (var i = 0; i < this.tags.length(); i++) {
-			if (this.tags[i] == tag) {
-				return true;
-			}
-		}
-		return false;
-	}
+ 	this.addSearchTag = function(tag) {
+ 		this.searchTags.push(tag);
+ 	}
 
-	this.addTag = function(tag) {
-		this.tags.push(tag);
-	}
-
-	this.removeTag = function(tag) {
-		for (var i = 0; i < this.tags.length(); i++) {
-			if (this.tags[i] == tag) {
-				this.tags.splice(i, 1);
+ 	this.removeSearchTag = function(tag) {
+		for (var i = 0; i < this.searchTags.length; i++) {
+			if (this.searchTags[i] == tag) {
+				this.searchTags.splice(i, 1);
 				return;
 			}
 		}
 		return;
+	}
+
+	this.searchByKeys = function(search) {
+		var searchKeys = search.split(" ");
+		var tags = this.getSearchTags();
+		for (var j = 0; j < searchKeys.length; j++) {
+			for (var k = 0; k < tags.length; k++) {
+				if (tags[k].indexOf(searchKey[j]) > -1) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	this.getGroups = function() {
@@ -83,7 +87,7 @@ var job = function(name, description, id) {
 	}
 
 	this.removeGroup = function(groupName) {
-		for (var i = 0; i < this.groups.length(); i++) {
+		for (var i = 0; i < this.groups.length; i++) {
 			if (this.groups[i] == groupName) {
 				this.groups.splice(i, 1);
 			}
@@ -91,7 +95,7 @@ var job = function(name, description, id) {
 	}
 
 	this.getApplicant = function(id) {
-		for (var i = 0; i < this.applicants.length(); i++) {
+		for (var i = 0; i < this.applicants.length; i++) {
 			if (this.applicants[i].equals(id)) {
 				return this.applicants[i]
 			}
@@ -99,12 +103,12 @@ var job = function(name, description, id) {
 		return false;
 	}
 
-	this.addGroup = function(applicant) {
+	this.addApplicant = function(applicant) {
 		this.applicants.push(applicant);
 	}
 
-	this.removeGroup = function(id) {
-		for (var i = 0; i < this.applicants.length(); i++) {
+	this.removeApplicant = function(id) {
+		for (var i = 0; i < this.applicants.length; i++) {
 			if (this.applicants[i].equals(id)) {
 				this.applicants.splice(i, 1);
 			}
@@ -116,12 +120,27 @@ var job = function(name, description, id) {
 		if (groupName == "All") {
 			return this.applicants;
 		}
-		for (var i = 0; i < this.applicants.length(); i++) {
+		for (var i = 0; i < this.applicants.length; i++) {
 			if (this.applicants[i].isInGroup(groupName)) {
 				applicantsInGroup.push(this.applicants[i]);
 			}
 		}
 		return applicantsInGroup;
+	}
+
+	this.getApplicantsByGroupAndSearch = function(groupName, search) {
+		var applicantsInGroupAndSearch = [];
+		if (groupName == "All") {
+			return this.applicants;
+		}
+		for (var i = 0; i < this.applicants.length; i++) {
+			if (this.applicants[i].isInGroup(groupName)) {
+				if (this.applicants[i].searchByKeys(search)) {
+					applicantsInGroupAndSearch.push(this.applicants[i]);
+				}
+			}
+		}
+		return applicantsInGroupAndSearch
 	}
 
 }
