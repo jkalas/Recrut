@@ -95,7 +95,7 @@
 		var tags = this.getSearchTags();
 		for (var j = 0; j < searchKeys.length; j++) {
 			for (var k = 0; k < tags.length; k++) {
-				if (tags[k].indexOf(searchKey[j]) > -1) {
+				if (tags[k].indexOf(searchKeys[j]) > -1) {
 					return true;
 				}
 			}

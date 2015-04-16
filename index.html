@@ -177,7 +177,7 @@
                 <div class="form-group" id="inputEmailContentFormGroup">
                   <label for="inputEmailContent" class="col-sm-2 control-label">Message:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmailContent" placeholder="Message">
+                    <textarea style="resize:none" rows="6" class="form-control" id="inputEmailContent" placeholder="Message"></textarea>
                   </div>
                 </div> 
                 <div class="form-group">
@@ -238,24 +238,69 @@
       </div>
 
       <!-- CommentsModal -->
-      <div class="modal fade" id="commentModal">
+      <div class="modal fade" id="commentModal1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="commentModalName">Comments on John Doe</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal1"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="commenTitle1">Interview 1</h4>
             </div>
             <div class="modal-body" align="center">
-              <ul class="nav nav-pills" id="commentListModal">
-                <li role="presentation" id="comment0"><a href="#">Comment 1</a></li>
-                <li role="presentation" id="comment1"><a href="#">Comment 2</a></li>
-              </ul>
+              <form class="form-horizontal">
+                <div class="form-group" id="inputTitleFormGroupComment1">
+                  <label for="inputTitleComment1" class="col-sm-2 control-label">Title</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static" id="inputTitleComment1" style="float:left;">Interview 1</p>
+                  </div>
+                </div>
+                <div class="form-group" id="inputCommenterNameFormGroupComment1">
+                  <label for="inputCommenterNameComment1" class="col-sm-2 control-label">Commenter</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static" id="inputCommenterNameComment1" style="float:left;">Paul Colella</p>
+                  </div>
+                </div>
+                <div class="form-group" id="inputAddCommentFormGroupComment1">
+                  <label for="inputCommentComment1" class="col-sm-2 control-label">Comment</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static" id="inputCommentComment1" style="float:left;">Very Smart! Approved!</p>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div style="margin: 20px">
-              <h5 id="commenterNameModal">By: Paul Colella</h5>
-              <p1 id="commentTextModal">John Doe had a great personality and seemed like a real go getter but he deffinitely leaves something to be desired in the technical skill area. I would consider taking him on as an intern for the summer and then revaluating from their</p1>
+          </div>
+        </div>
+      </div>
+
+      <!-- CommentsModal -->
+      <div class="modal fade" id="commentModal2">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal2"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="commenTitle2">Interview 2</h4>
             </div>
-            <div style="margin:20px;aligh:right;"><a href="#"><span class="glyphicon glyphicon-plus"></span> Comment</a></div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <div class="form-group" id="inputTitleFormGroupComment2">
+                  <label for="inputTitleComment2" class="col-sm-2 control-label">Title</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static" id="inputTitleComment2" style="float:left;">Interview 2</p>
+                  </div>
+                </div>
+                <div class="form-group" id="inputCommenterNameFormGroupComment2">
+                  <label for="inputCommenterNameComment2" class="col-sm-2 control-label">Commenter</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static" id="inputCommenterNameComment2" style="float:left;">Brandt Nelson</p>
+                  </div>
+                </div>
+                <div class="form-group" id="inputAddCommentFormGroupComment2">
+                  <label for="inputCommentComment2" class="col-sm-2 control-label">Comment</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static" id="inputCommentComment2" style="float:left;">I think this applicant is a great cultural fit!</p>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -266,7 +311,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAddCommentModal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="addCommenTitle">Add Comment to John Doe</h4>
+              <h4 class="modal-title" id="addCommenTitle">Add Comment</h4>
             </div>
             <div class="modal-body" align="center">
               <form class="form-horizontal">
@@ -279,18 +324,18 @@
                 <div class="form-group" id="inputCommenterNameFormGroup">
                   <label for="inputCommenterName" class="col-sm-2 control-label">Commenter</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputCommenterName" placeholder="Commenter's Name">
+                    <input type="text" class="form-control" id="inputCommenterName" placeholder="Commenter">
                   </div>
                 </div>
                 <div class="form-group" id="inputAddCommentFormGroup">
                   <label for="inputComment" class="col-sm-2 control-label">Comment</label>
                   <div class="col-sm-10">
-                    <textarea style="resize:none" rows="10" class="form-control" id="inputComment" placeholder="Type Comment Here"></textarea>
+                    <textarea style="resize:none" rows="10" class="form-control" id="inputComment" placeholder="Comment"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="createAddDocModal">Add</button>
+                    <button type="submit" class="btn btn-primary" id="createAddCommentModal">Add</button>
                   </div>
                 </div>
               </form>
@@ -353,9 +398,9 @@
                       <li role="presentation" class="active" id="addApplicant"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Applicant</a></li>
                     </ul>
                     <div class="input-group" style="padding-top: 5px;">
-                      <input type="text" class="form-control" placeholder="Search Applicants">
+                      <input type="text" class="form-control" placeholder="Search Applicants" id="search-field-applicant">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+                        <button class="btn btn-default" type="button" id="search-button-applicant"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
                       </span>
                     </div>
                     <div class="mygrid-wrapper-div">
