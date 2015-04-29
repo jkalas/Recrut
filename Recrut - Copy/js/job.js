@@ -66,10 +66,7 @@ var job = function(name, description, id) {
 	}
 
 	this.searchByKeys = function(search) {
-		var searchKeys = search.toLowerCase().split(" ");
-		if (searchKeys.length == 0) {
-			return true;
-		}
+		var searchKeys = search.toLowerCase()split(" ");
 		var tags = this.getSearchTags();
 		for (var j = 0; j < searchKeys.length; j++) {
 			for (var k = 0; k < tags.length; k++) {
@@ -119,10 +116,7 @@ var job = function(name, description, id) {
 	}
 
 	this.searchGroups = function(search) {
-		var searchKeys = search.toLowerCase().split(" ");
-		if (searchKeys.length == 0) {
-			return this,getGroups();
-		}
+		var searchKeys = search.toLowerCase()split(" ");
 		var groups = this.getGroups();
 		var matched_groups = []
 		for (var j = 0; j < groups.length; j++) {

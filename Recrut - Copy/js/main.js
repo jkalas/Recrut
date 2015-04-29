@@ -389,19 +389,11 @@ $(function() {
 
     $("#search-button-applicant").click(function(evt) {
         var searchValue = document.getElementById("search-field-applicant").value;
-        updateApplicantRows(searchValue);
-     });
-
-    $("#search-field-applicant").keypress(function(e) {
-        if(e.which == 13 || e.which == 8) {
-            e.preventDefault();
-            $("#search-button-applicant").click();
+        if (searchValue) {
+            updateApplicantRows(searchValue);
         }
-    });
-
-    $('#search-field-applicant').keyup(function(evt) {
-        $("#search-button-applicant").click();
-    });
+        document.getElementById("search-field-applicant").value = "";
+     });
 
 });
 

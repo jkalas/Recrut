@@ -102,9 +102,6 @@
 
 	this.searchByKeys = function(search) {
 		var searchKeys = search.toLowerCase().split(" ");
-		if (searchKeys.length == 0) {
-			return true;
-		}
 		var tags = this.getSearchTags();
 		for (var j = 0; j < searchKeys.length; j++) {
 			for (var k = 0; k < tags.length; k++) {
