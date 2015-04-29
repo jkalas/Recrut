@@ -11,6 +11,9 @@ $(function() {
     var defaultComment1 = new comment(0, "Paul Colella", "Very Smart! Approved!", "Interview 1");
     var defaultComment2 = new comment(1, "Brandt Nelson", "I think this applicant is a great cultural fit!", "Interview 2");
 
+    var defaultResume = new doc("Resume", 0, "graphics/resume.png");
+    var defaultLetter = new doc("Cover Letter", 0, "graphics/coverLetter.png");
+
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
 	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", 0, "Group");
 	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", 1, "Group");
@@ -18,11 +21,18 @@ $(function() {
     defaultApplicant1.addComment(defaultComment1);
     defaultApplicant1.addComment(defaultComment2);
 
+    defaultApplicant1.addDocument(defaultResume);
+    defaultApplicant1.addDocument(defaultLetter);
+
     defaultApplicant2.addComment(defaultComment1);
     defaultApplicant2.addComment(defaultComment2);
 
+    defaultApplicant2.addDocument(defaultResume);
+    defaultApplicant2.addDocument(defaultLetter);
+
 	defaultPosition.addApplicant(defaultApplicant1);
 	defaultPosition.addApplicant(defaultApplicant2);
+
     positionSet.push(defaultPosition);
 
     var defaultPosition2 = new job("Sales Intern", "Default", positionSet.length);
@@ -34,8 +44,14 @@ $(function() {
     defaultApplicant3.addComment(defaultComment1);
     defaultApplicant3.addComment(defaultComment2);
 
+    defaultApplicant3.addDocument(defaultResume);
+    defaultApplicant3.addDocument(defaultLetter);
+
     defaultApplicant4.addComment(defaultComment1);
     defaultApplicant4.addComment(defaultComment2);
+
+    defaultApplicant4.addDocument(defaultResume);
+    defaultApplicant4.addDocument(defaultLetter);
 
     defaultPosition2.addApplicant(defaultApplicant3);
     defaultPosition2.addApplicant(defaultApplicant4);
@@ -138,7 +154,21 @@ $(function() {
 			$("#doc-" + applicants[index].getID()).on('click', function(evt) {
                 $("#docModalHeader").empty();
                 $("#docModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Documents for " + applicants[evt.target.id.split("-")[1]].getFullName() + "</h4>");				
-				$('#docModal').modal('show');
+				
+                $("#docsNav").empty();
+                $("#docsContent").empty();
+
+                var allDocs = applicants[evt.target.id.split("-")[1]].getDocuments();
+                for (var docNum = 0; docNum < allDocs.length; docNum++) {
+                    var curDoc = allDocs[docNum];
+                    $("#docsNav").append("<li id=\"view-doc-" + docNum + "\"><a href=\"#tab-doc-" + docNum + "\" data-toggle=\"tab\">" + curDoc.getName() + "</a></li>");
+                    $("#docsContent").append("<div class=\"tab-pane\" id=\"tab-doc-" + docNum + "\"><br><img src=\"" + curDoc.getSrc() + "\" style=\"width:536px;height:694px\"></div>");
+                }
+
+                $("#view-doc-0").addClass("active");
+                $("#tab-doc-0").addClass("tab-pane active");
+
+                $('#docModal').modal('show');
 			});
             $("#comment-" + applicants[index].getID()).on('click', function(evt) {
                 $("#commentsModalHeader").empty();
@@ -150,13 +180,12 @@ $(function() {
                 var allComments = applicants[evt.target.id.split("-")[1]].getComments();
                 for (var comments = 0; comments < allComments.length; comments++) {
                     var curComment = allComments[comments];
-                    $("#commentsNav").append("<li id=\"view-comment-" + comments + "\"><a href=\"#tab" + comments + "\" data-toggle=\"tab\">" + curComment.title + "</a></li>");
-                    
-                    $("#commentsContent").append("<div class=\"tab-pane\" id=\"tab" + comments + "\"><br><form class=\"form-horizontal\"><div class=\"form-group\"><label class=\"col-sm-2 control-label\">By</label><div class=\"col-sm-10\"><p class=\"form-control-static\" style=\"float:left;\">" + curComment.commenter + "</p></div></div><div class=\"form-group\"><label class=\"col-sm-2 control-label\">Comment</label><div class=\"col-sm-10\"><p class=\"form-control-static\" style=\"float:left;\">" + curComment.text + "</p></div></div></form></div>");
+                    $("#commentsNav").append("<li id=\"view-comment-" + comments + "\"><a href=\"#tab-comment-" + comments + "\" data-toggle=\"tab\">" + curComment.title + "</a></li>");
+                    $("#commentsContent").append("<div class=\"tab-pane\" id=\"tab-comment-" + comments + "\"><br><form class=\"form-horizontal\"><div class=\"form-group\"><label class=\"col-sm-2 control-label\">By</label><div class=\"col-sm-10\"><p class=\"form-control-static\" style=\"float:left;\">" + curComment.commenter + "</p></div></div><div class=\"form-group\"><label class=\"col-sm-2 control-label\">Comment</label><div class=\"col-sm-10\"><p class=\"form-control-static\" style=\"float:left;\">" + curComment.text + "</p></div></div></form></div>");
                 }
 
                 $("#view-comment-0").addClass("active");
-                $("#tab0").addClass("tab-pane active");
+                $("#tab-comment-0").addClass("tab-pane active");
 
                 $('#commentModal1').modal('show');
             });
@@ -377,7 +406,17 @@ $(function() {
      });
 
 	$("#createAddDocModal").click(function(evt) {
+        var docName = document.getElementById("inputAddDocName").value;
+        var fileName = document.getElementById("exampleInputFile").value;
+
+        if (docName && fileName) {
+            var newDoc = new doc(docName, 1, "graphics/placeholder.png");
+            var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
+            applicants[selectedApplicantID].addDocument(newDoc);
+        }
+
 		document.getElementById("inputAddDocName").value = "";
+        document.getElementById("exampleInputFile").value = "";
 
 	 	$('#addDocModal').modal('hide');
      });
