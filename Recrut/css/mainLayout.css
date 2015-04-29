@@ -105,3 +105,8 @@
   right: 35%;
   left: auto;
 }
+
+.panel-heading {
+	font-size: 115%;
+	font-weight: bold;
+}

@@ -40,6 +40,10 @@
  		return this.lastName;
  	}
 
+ 	this.getFullName = function() {
+ 		return this.firstName + " " + this.lastName;
+ 	}
+
  	this.setFirstName =  function(firstName) {
  		removeSearchTag(this.getFirstName())
  		addSearchTag(firstName)

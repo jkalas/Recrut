@@ -6,9 +6,20 @@ $(function() {
 	var selectedGroupIndex = "All";
 	var currentApplicantID = 2;
 
+    var selectedApplicantID = 0;
+
+    var defaultComment1 = new comment(0, "Paul Colella", "Very Smart! Approved!", "Interview 1");
+    var defaultComment2 = new comment(1, "Brandt Nelson", "I think this applicant is a great cultural fit!", "Interview 2");
+
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
 	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", 0, "Group");
 	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", 1, "Group");
+
+    defaultApplicant1.addComment(defaultComment1);
+    defaultApplicant1.addComment(defaultComment2);
+
+    defaultApplicant2.addComment(defaultComment1);
+    defaultApplicant2.addComment(defaultComment2);
 
 	defaultPosition.addApplicant(defaultApplicant1);
 	defaultPosition.addApplicant(defaultApplicant2);
@@ -19,6 +30,12 @@ $(function() {
 
     var defaultApplicant3 = new applicant("Paul", "Colella", "pc@caltech.edu", "(322) 555-2422", "Cal Tech", 0, "Group");
     var defaultApplicant4 = new applicant("Billy", "Bob", "billy@florida.edu", "(545) 444-4455", "Florida", 1, "Group");
+
+    defaultApplicant3.addComment(defaultComment1);
+    defaultApplicant3.addComment(defaultComment2);
+
+    defaultApplicant4.addComment(defaultComment1);
+    defaultApplicant4.addComment(defaultComment2);
 
     defaultPosition2.addApplicant(defaultApplicant3);
     defaultPosition2.addApplicant(defaultApplicant4);
@@ -109,7 +126,7 @@ $(function() {
             var delete_button = "<button type=\"button\" class=\"btn btn-primary btn-xs\" id=\"delete-btn-title-" + applicants[index].getID() + "\"> Delete </button>";
   
 			var applicantList = document.getElementById('applicantList');
-			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "<div class=\"btn-group\" style=\"float:right;\">"+group_dropdown + edit_button + delete_button + "</div></div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>" + applicants[index].getEducation() + "</td></tr><tr><td><a href=\"#\" class=\"emailLink\" id=\"emailLink-" + applicants[index].getID() + "\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents (<a href=\"#\" id=\"add-doc-" + applicants[index].getID() + "\">add</a>)</th></tr><tr><td><a href=\"#\" id=\"doc-coverLetter-" + applicants[index].getID() + "\">Cover Letter</a></td></tr><tr><td><a href=\"#\" id=\"doc-resume-" + applicants[index].getID() + "\">Resume</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments (<a href=\"#\" id=\"add-comment-" + applicants[index].getID() + "\">add</a>)</th></tr><tr><td><a href=\"#\" id=\"comment-interview1-" + applicants[index].getID() + "\">Interview 1</a></td></tr><tr><td><a href=\"#\" id=\"comment-interview2-" + applicants[index].getID() + "\">Interview 2</a></td></tr></table></div></div></div>");
+			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "<div class=\"btn-group\" style=\"float:right;\">"+group_dropdown + edit_button + delete_button + "</div></div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>" + applicants[index].getEducation() + "</td></tr><tr><td><a href=\"#\" class=\"emailLink\" id=\"emailLink-" + applicants[index].getID() + "\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents</th></tr><tr><td><a href=\"#\" id=\"add-doc-" + applicants[index].getID() + "\">Add</a></td></tr><tr><td><a href=\"#\" id=\"doc-" + applicants[index].getID() + "\">View All</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments</th></tr><tr><td><a href=\"#\" id=\"add-comment-" + applicants[index].getID() + "\">Add</a></td></tr><tr><td><a href=\"#\" id=\"comment-" + applicants[index].getID() + "\">View All</a></td></tr></table></div></div></div>");
 			var emailOfApplicant = applicants[index].getEmail();
 			$("#emailLink-" + applicants[index].getID()).on('click', function(evt) {
 				var applicantID = evt.target.id.split("-")[1];
@@ -118,32 +135,45 @@ $(function() {
 				$("#inputEmailToFormGroup").append("<label for=\"inputEmailTo\" class=\"col-sm-2 control-label\">To:</label><div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" id=\"inputEmailFrom\" value=\"" + applicantEmail + "\" readonly></div>");
 				$('#emailModal').modal('show');
 			});
-			$("#doc-coverLetter-" + applicants[index].getID()).on('click', function(evt) {
-				$("#docModalHeader").empty();
-				$("#docModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">" + "Cover Letter" + "</h4>");
-				
-				$("#docModalImageHolder").empty();
-				$("#docModalImageHolder").append("<img src=\"graphics/coverLetter.png\" alt=\"Resume\" style=\"width:536px;height:694px\">");
+			$("#doc-" + applicants[index].getID()).on('click', function(evt) {
+                $("#docModalHeader").empty();
+                $("#docModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Documents for " + applicants[evt.target.id.split("-")[1]].getFullName() + "</h4>");				
 				$('#docModal').modal('show');
 			});
-			$("#doc-resume-" + applicants[index].getID()).on('click', function(evt) {
-				$("#docModalHeader").empty();
-				$("#docModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">" + "Resume" + "</h4>");
-				
-				$("#docModalImageHolder").empty();
-				$("#docModalImageHolder").append("<img src=\"graphics/resume.png\" alt=\"Resume\" style=\"width:536px;height:694px\">");
-				$('#docModal').modal('show');
-			});
-            $("#comment-interview1-" + applicants[index].getID()).on('click', function(evt) {
+            $("#comment-" + applicants[index].getID()).on('click', function(evt) {
+                $("#commentsModalHeader").empty();
+                $("#commentsModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Comments for " + applicants[evt.target.id.split("-")[1]].getFullName() + "</h4>");
+                
+                $("#commentsNav").empty();
+                $("#commentsContent").empty();
+
+                var allComments = applicants[evt.target.id.split("-")[1]].getComments();
+                for (var comments = 0; comments < allComments.length; comments++) {
+                    var curComment = allComments[comments];
+                    $("#commentsNav").append("<li id=\"view-comment-" + comments + "\"><a href=\"#tab" + comments + "\" data-toggle=\"tab\">" + curComment.title + "</a></li>");
+                    
+                    $("#commentsContent").append("<div class=\"tab-pane\" id=\"tab" + comments + "\"><br><form class=\"form-horizontal\"><div class=\"form-group\"><label class=\"col-sm-2 control-label\">By</label><div class=\"col-sm-10\"><p class=\"form-control-static\" style=\"float:left;\">" + curComment.commenter + "</p></div></div><div class=\"form-group\"><label class=\"col-sm-2 control-label\">Comment</label><div class=\"col-sm-10\"><p class=\"form-control-static\" style=\"float:left;\">" + curComment.text + "</p></div></div></form></div>");
+                }
+
+                $("#view-comment-0").addClass("active");
+                $("#tab0").addClass("tab-pane active");
+
                 $('#commentModal1').modal('show');
             });
-            $("#comment-interview2-" + applicants[index].getID()).on('click', function(evt) {
-                $('#commentModal2').modal('show');
-            });
 			$("#add-doc-" + applicants[index].getID()).on('click', function(evt) {
+                selectedApplicantID = evt.target.id.split("-")[2];
+
+                $("#addDocModalHeader").empty();
+                $("#addDocModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeAddDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Add Document for " + applicants[selectedApplicantID].getFullName() + "</h4>");
+
 				$('#addDocModal').modal('show');
 			});
             $("#add-comment-" + applicants[index].getID()).on('click', function(evt) {
+                selectedApplicantID = evt.target.id.split("-")[2];
+
+                $("#addCommentModalHeader").empty();
+                $("#addCommentModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeAddCommentModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Add Comment for " + applicants[selectedApplicantID].getFullName() + "</h4>");
+
                 $('#addCommentModal').modal('show');
             });
             $("#dropdown-list-" + applicants[index].getID()).on('click', function(evt) {
@@ -355,7 +385,7 @@ $(function() {
     $("#createAddCommentModal").click(function(evt) {
         var title = document.getElementById("inputTitle").value;
         var commenterName = document.getElementById("inputCommenterName").value;
-        var comment = document.getElementById("inputComment").value;
+        var text = document.getElementById("inputComment").value;
 
         if (!title) {
             $("#inputTitleFormGroup").addClass("has-error");
@@ -369,14 +399,14 @@ $(function() {
         else {
             $("#inputCommenterNameFormGroup").removeClass("has-error");
         }
-        if (!comment) {
+        if (!text) {
             $("#inputAddCommentFormGroup").addClass("has-error");
         }
         else {
             $("#inputAddCommentFormGroup").removeClass("has-error");
         }
 
-        if (title && commenterName && comment) {
+        if (title && commenterName && text) {
             $('#addCommentModal').modal('hide');
             document.getElementById("inputTitle").value = "";
             document.getElementById("inputCommenterName").value = "";
@@ -385,6 +415,10 @@ $(function() {
             $("#inputTitleFormGroup").removeClass("has-error");
             $("#inputCommenterNameFormGroup").removeClass("has-error");
             $("#inputAddCommentFormGroup").removeClass("has-error");
+
+            var newComment = new comment(1, commenterName, text, title);
+            var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
+            applicants[selectedApplicantID].addComment(newComment);
         }
 
      });

@@ -191,15 +191,30 @@
         </div>
       </div>
 
-      <!-- View doc modal -->
+      <!-- All docs modal -->
       <div class="modal fade" id="docModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header" id="docModalHeader">
-              
+
             </div>
             <div class="modal-body" align="center" id="docModalImageHolder">
-              
+              <div class="tabbable">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#resumeTab" data-toggle="tab">Resume</a></li>
+                  <li><a href="#coverLetterTab" data-toggle="tab">Cover Letter</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="resumeTab">
+                    <br>
+                    <img src="graphics/resume.png" alt="Resume" style="width:536px;height:694px">
+                  </div>
+                  <div class="tab-pane" id="coverLetterTab">
+                    <br>
+                    <img src="graphics/coverLetter.png" alt="coverLetter" style="width:536px;height:694px">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -209,9 +224,8 @@
       <div class="modal fade" id="addDocModal">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAddDocModal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Add Document</h4>
+            <div class="modal-header" id="addDocModalHeader">
+
             </div>
             <div class="modal-body" align="center">
               <form class="form-horizontal">
@@ -237,70 +251,57 @@
         </div>
       </div>
 
-      <!-- CommentsModal -->
+      <!-- All comments modal -->
       <div class="modal fade" id="commentModal1">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal1"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="commenTitle1">Interview 1</h4>
-            </div>
-            <div class="modal-body" align="center">
-              <form class="form-horizontal">
-                <div class="form-group" id="inputTitleFormGroupComment1">
-                  <label for="inputTitleComment1" class="col-sm-2 control-label">Title</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputTitleComment1" style="float:left;">Interview 1</p>
-                  </div>
-                </div>
-                <div class="form-group" id="inputCommenterNameFormGroupComment1">
-                  <label for="inputCommenterNameComment1" class="col-sm-2 control-label">Commenter</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommenterNameComment1" style="float:left;">Paul Colella</p>
-                  </div>
-                </div>
-                <div class="form-group" id="inputAddCommentFormGroupComment1">
-                  <label for="inputCommentComment1" class="col-sm-2 control-label">Comment</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommentComment1" style="float:left;">Very Smart! Approved!</p>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div class="modal-header" id="commentsModalHeader">
 
-      <!-- CommentsModal -->
-      <div class="modal fade" id="commentModal2">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal2"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="commenTitle2">Interview 2</h4>
             </div>
-            <div class="modal-body" align="center">
-              <form class="form-horizontal">
-                <div class="form-group" id="inputTitleFormGroupComment2">
-                  <label for="inputTitleComment2" class="col-sm-2 control-label">Title</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputTitleComment2" style="float:left;">Interview 2</p>
+            <div class="modal-body">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs" id="commentsNav">
+                      <li class="active"><a href="#tab1" data-toggle="tab">Interview 1</a></li>
+                      <li><a href="#tab2" data-toggle="tab">Interview 2</a></li>
+                    </ul>
+                    <div class="tab-content" id="commentsContent">
+                      <div class="tab-pane active" id="tab1">
+                        <br>
+                        <form class="form-horizontal">
+                          <div class="form-group" id="inputCommenterNameFormGroupComment1">
+                            <label for="inputCommenterNameComment1" class="col-sm-2 control-label">By</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static" id="inputCommenterNameComment1" style="float:left;">Paul Colella</p>
+                            </div>
+                          </div>
+                          <div class="form-group" id="inputAddCommentFormGroupComment1">
+                            <label for="inputCommentComment1" class="col-sm-2 control-label">Comment</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static" id="inputCommentComment1" style="float:left;">Very Smart! Approved!</p>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane" id="tab2">
+                        <br>
+                        <form class="form-horizontal">
+                          <div class="form-group" id="inputCommenterNameFormGroupComment2">
+                            <label for="inputCommenterNameComment2" class="col-sm-2 control-label">By</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static" id="inputCommenterNameComment2" style="float:left;">Brandt Nelson</p>
+                            </div>
+                          </div>
+                          <div class="form-group" id="inputAddCommentFormGroupComment2">
+                            <label for="inputCommentComment1" class="col-sm-2 control-label">Comment</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static" id="inputCommentComment2" style="float:left;">I think this applicant is a great cultural fit!</p>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group" id="inputCommenterNameFormGroupComment2">
-                  <label for="inputCommenterNameComment2" class="col-sm-2 control-label">Commenter</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommenterNameComment2" style="float:left;">Brandt Nelson</p>
-                  </div>
-                </div>
-                <div class="form-group" id="inputAddCommentFormGroupComment2">
-                  <label for="inputCommentComment2" class="col-sm-2 control-label">Comment</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommentComment2" style="float:left;">I think this applicant is a great cultural fit!</p>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
           </div>
         </div>
       </div>
@@ -309,9 +310,8 @@
       <div class="modal fade" id="addCommentModal">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAddCommentModal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="addCommenTitle">Add Comment</h4>
+            <div class="modal-header" id="addCommentModalHeader">
+
             </div>
             <div class="modal-body" align="center">
               <form class="form-horizontal">
@@ -322,9 +322,9 @@
                   </div>
                 </div>
                 <div class="form-group" id="inputCommenterNameFormGroup">
-                  <label for="inputCommenterName" class="col-sm-2 control-label">Commenter</label>
+                  <label for="inputCommenterName" class="col-sm-2 control-label">By</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputCommenterName" placeholder="Commenter">
+                    <input type="text" class="form-control" id="inputCommenterName" value="John Doe">
                   </div>
                 </div>
                 <div class="form-group" id="inputAddCommentFormGroup">
