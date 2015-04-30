@@ -6,6 +6,8 @@ $(function() {
 	var selectedGroupIndex = "All";
 	var currentApplicantID = 2;
 
+    var modalID = 0;
+
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
 	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", 0, "Group");
 	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", 1, "Group");
@@ -151,13 +153,87 @@ $(function() {
                 $('#dropdown-btn-title-' + evt.target.id.split("-")[0]).append(evt.target.id.split("-")[1] + "<span class=\"caret\"></span>");
 
                 positionSet[selectedPositionIndex].getApplicant(evt.target.id.split("-")[0]).setGroup(evt.target.id.split("-")[1]);
-            })
+            });
+            $("#edit-btn-title-" + applicants[index].getID()).on('click', function(evt) {
+                var applicantID = evt.target.id.split("-")[3];
+                modalID = applicantID;
+                $('#inputEApplicantFirstName').val(applicants[applicantID].getFirstName());
+                $('#inputEApplicantLastName').val(applicants[applicantID].getLastName());
+                $('#inputEApplicantEducation').val(applicants[applicantID].getEducation());
+                $('#inputEApplicantEmail').val(applicants[applicantID].getEmail());
+                $('#inputEApplicantPhone').val(applicants[applicantID].getPhoneNumber());
+                $('#editApplicantModal').modal('show');
+            });
+            $("#delete-btn-title-" + applicants[index].getID()).on('click', function(evt) {
+                $('#deleteApplicantModal').modal('show');
+            });
 		}
 	}
 
     updatePositionRows(0);
     updateGroupRows("All");
     updateApplicantRows();
+
+    $("#saveEApplicantModal").click(function(evt) {
+        console.log(evt);
+        var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
+        var firstName = document.getElementById("inputEApplicantFirstName").value;
+        var lastName = document.getElementById("inputEApplicantLastName").value;
+        var education = document.getElementById("inputEApplicantEducation").value;
+        var email = document.getElementById("inputEApplicantEmail").value;
+        var phone = document.getElementById("inputEApplicantPhone").value;
+
+        if (!firstName) {
+            $("#inputEApplicantFirstNameFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputEApplicantFirstNameFormGroup").removeClass("has-error");
+        }
+        if (!lastName) {
+            $("#inputEApplicantLastNameFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputEApplicantLastNameFormGroup").removeClass("has-error");
+        }
+
+        if (firstName && lastName) {
+            // create new applicant
+            var selectedGroupApplicant = selectedGroupIndex;
+            if (selectedGroupApplicant == "All") {
+                selectedGroupApplicant = "Group";
+            }
+            applicants[modalID].setFirstName(firstName);
+            applicants[modalID].setLastName(lastName);
+            applicants[modalID].setEducation(education);
+            applicants[modalID].setEmail(email);
+            applicants[modalID].setPhoneNumber(phone);
+
+            updateApplicantRows();
+
+            $('#editApplicantModal').modal('hide');
+
+            document.getElementById("inputEApplicantFirstName").value = "";
+            document.getElementById("inputEApplicantLastName").value = "";
+            document.getElementById("inputEApplicantEducation").value = "";
+            document.getElementById("inputEApplicantEmail").value = "";
+            document.getElementById("inputEApplicantPhone").value = "";
+
+            $("#inputEApplicantFirstNameFormGroup").removeClass("has-error");
+            $("#inputEApplicantLastNameFormGroup").removeClass("has-error");
+
+        }
+     });
+
+    $("#closeEApplicantModal").click(function(evt) {
+        document.getElementById("inputEApplicantFirstName").value = "";
+        document.getElementById("inputEApplicantLastName").value = "";
+        document.getElementById("inputEApplicantEducation").value = "";
+        document.getElementById("inputEApplicantEmail").value = "";
+        document.getElementById("inputEApplicantPhone").value = "";
+
+        $("#inputEApplicantFirstNameFormGroup").removeClass("has-error");
+        $("#inputEApplicantLastNameFormGroup").removeClass("has-error");
+     });
 
 	$("#addPosition").click(function(evt) {
 		$('#positionModal').modal('show'); 
@@ -293,7 +369,7 @@ $(function() {
 
      	}
      });
-
+    
 	$("#closeApplicantModal").click(function(evt) {
 	 	document.getElementById("inputApplicantFirstName").value = "";
      	document.getElementById("inputApplicantLastName").value = "";
