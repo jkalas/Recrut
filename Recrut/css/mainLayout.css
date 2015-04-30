@@ -143,3 +143,13 @@
 	background-color: #5cb85c !important; 
 	color: #fff;
 }
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../external_dependencies/Montserrat-Regular.ttf);
+}
+
+#title-name {
+	color:#ffffff;
+	font-family: 'Montserrat', sans-serif;
+}
