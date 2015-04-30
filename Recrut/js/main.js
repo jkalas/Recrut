@@ -304,6 +304,8 @@ $(function() {
             $("#inputEApplicantLastNameFormGroup").removeClass("has-error");
 
         }
+
+        $("#editApplicantModal").modal('hide');
      });
 
     $("#closeEApplicantModal").click(function(evt) {
@@ -503,6 +505,7 @@ $(function() {
 	$("#closeDocModal").click(function(evt) {
 
      });
+
 
 	$("#createAddDocModal").click(function(evt) {
         var docName = document.getElementById("inputAddDocName").value;
