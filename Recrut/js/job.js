@@ -136,6 +136,10 @@ var job = function(name, description, id) {
 		return matched_groups;
 	}
 
+	this.getApplicants = function() {
+		return this.applicants;
+	}
+
 	this.getApplicantsByGroup = function(groupName) {
 		var applicantsInGroup = [];
 		if (groupName == "All") {

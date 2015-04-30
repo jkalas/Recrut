@@ -28,6 +28,10 @@
  		return (this.id == id);
  	}
 
+ 	this.setID = function(id) {
+ 		this.id = id;
+ 	}
+
  	this.getID = function() {
 		return this.id;
 	}
@@ -40,15 +44,19 @@
  		return this.lastName;
  	}
 
+ 	this.getFullName = function() {
+ 		return this.firstName + " " + this.lastName;
+ 	}
+
  	this.setFirstName =  function(firstName) {
- 		removeSearchTag(this.getFirstName())
- 		addSearchTag(firstName)
+ 		this.removeSearchTag(this.getFirstName());
+ 		this.addSearchTag(firstName);
  		this.firstName = firstName;
  	}
 
  	this.setLastName = function(lastName) {
- 		removeSearchTag(this.getLastName())
- 		addSearchTag(lastName)
+ 		this.removeSearchTag(this.getLastName());
+ 		this.addSearchTag(lastName);
  		this.lastName = lastName;
  	}
 
@@ -57,8 +65,8 @@
  	}
 
  	this.setEmail = function(email) {
- 		removeSearchTag(this.getEmail())
- 		addSearchTag(email)
+ 		this.removeSearchTag(this.getEmail());
+ 		this.addSearchTag(email);
  		this.email = email;
  	}
 
@@ -67,8 +75,8 @@
  	}
 
  	this.setPhoneNumber = function(phoneNumber) {
- 		removeSearchTag(this.getPhoneNumber())
- 		addSearchTag(phoneNumber)
+ 		this.removeSearchTag(this.getPhoneNumber());
+ 		this.addSearchTag(phoneNumber);
  		this.phoneNumber = phoneNumber;
  	}
 
@@ -77,8 +85,8 @@
  	}
 
  	this.setEducation = function(education) {
- 		removeSearchTag(this.getEducation())
- 		addSearchTag(education)
+ 		this.removeSearchTag(this.getEducation());
+ 		this.addSearchTag(education);
  		this.education = education;
  	}
 
