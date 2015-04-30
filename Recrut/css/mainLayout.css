@@ -110,3 +110,36 @@
 	font-size: 115%;
 	font-weight: bold;
 }
+
+.highlight .active a,
+.highlight .active a:hover {
+    background-color: #5bc0de !important; 
+}
+
+.button-flatten,
+.button-flatten:hover,
+.button-flatten:focus {
+	background-color: #337ab7 !important; 
+	color: #fff;
+}
+
+.button-flatten-danger,
+.button-flatten-danger:hover,
+.button-flatten-danger:focus {
+	background-color: #d9534f !important; 
+	color: #fff;
+}
+
+.button-flatten-warning,
+.button-flatten-warning:hover,
+.button-flatten-warning:focus {
+	background-color: #f0ad4e !important; 
+	color: #fff;
+}
+
+.button-flatten-good,
+.button-flatten-good:hover,
+.button-flatten-good:focus {
+	background-color: #5cb85c !important; 
+	color: #fff;
+}

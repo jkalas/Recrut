@@ -16,8 +16,8 @@ $(function() {
     var defaultLetter = new doc("Cover Letter", 0, "graphics/coverLetter.png");
 
 	var defaultPosition = new job("Finance Intern", "Default", positionSet.length);
-	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "MIT", 0, "Group");
-	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford", 1, "Group");
+	var defaultApplicant1 = new applicant("John", "Smith", "jsmith@mit.edu", "(601) 233-2341", "M.I.T.", 0, "Group");
+	var defaultApplicant2 = new applicant("Suzy", "Johnson", "suzy@stanford.edu", "(231) 334-8779", "Stanford University", 1, "Group");
 
     defaultApplicant1.addComment(defaultComment1);
     defaultApplicant1.addComment(defaultComment2);
@@ -39,8 +39,9 @@ $(function() {
     var defaultPosition2 = new job("Sales Intern", "Default", positionSet.length);
 
 
-    var defaultApplicant3 = new applicant("Paul", "Colella", "pc@caltech.edu", "(322) 555-2422", "Cal Tech", 0, "Group");
-    var defaultApplicant4 = new applicant("Billy", "Bob", "billy@florida.edu", "(545) 444-4455", "Florida", 1, "Group");
+    var defaultApplicant3 = new applicant("Adam", "Dove", "ad@chicago.edu", "(322) 555-2422", "University of Chicago", 0, "Group");
+    var defaultApplicant4 = new applicant("Billy", "Bob", "billy@florida.edu", "(545) 444-4455", "University of Florida", 1, "Group");
+    var defaultApplicant5 = new applicant("Samantha", "Carly", "sam.car@columbia.edu", "(890) 553-2316", "Columbia University", 1, "Group");
 
     defaultApplicant3.addComment(defaultComment1);
     defaultApplicant3.addComment(defaultComment2);
@@ -54,8 +55,16 @@ $(function() {
     defaultApplicant4.addDocument(defaultResume);
     defaultApplicant4.addDocument(defaultLetter);
 
+    defaultApplicant5.addComment(defaultComment1);
+    defaultApplicant5.addComment(defaultComment2);
+
+    defaultApplicant5.addDocument(defaultResume);
+    defaultApplicant5.addDocument(defaultLetter);
+
     defaultPosition2.addApplicant(defaultApplicant3);
     defaultPosition2.addApplicant(defaultApplicant4);
+    defaultPosition2.addApplicant(defaultApplicant5);
+
 
     positionSet.push(defaultPosition2);
 
@@ -132,18 +141,18 @@ $(function() {
             var groupsHighlighted = positionSet[selectedPositionIndex].getGroups();
 
             if (groupsHighlighted.length > 1) {
-                group_dropdown += "<button type=\"button\" class=\"btn btn-primary btn-xs dropdown-toggle\" id=\"dropdown-btn-title-" + applicants[index].getID() + "\" data-toggle=\"dropdown\" aria-expanded=\"false\">" + applicants[index].getGroup() + "<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" id=\"dropdown-list-" + applicants[index].getID() + "\">";
+                group_dropdown += "<div class=\"btn-group\" role=\"group\"><button type=\"button\" style=\"padding-right:10px;\" class=\"btn button-flatten-good btn-xs dropdown-toggle\" id=\"dropdown-btn-title-" + applicants[index].getID() + "\" data-toggle=\"dropdown\" aria-expanded=\"false\"><span class=\"caret\"></span> " + applicants[index].getGroup() + "</button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" id=\"dropdown-list-" + applicants[index].getID() + "\">";
                 for (var k = 1; k < groupsHighlighted.length; k++) {
                     group_dropdown += "<li><a href=\"#\" id=\"" + applicants[index].getID() + "-" + groupsHighlighted[k] + "\">" + groupsHighlighted[k] + "</a></li>";
                 }
-                group_dropdown += "</ul>";
+                group_dropdown += "</ul></div>";
             }
 
-            var edit_button = "<button type=\"button\" class=\"btn btn-primary btn-xs\" id=\"edit-btn-title-" + applicants[index].getID() + "\"> Edit </button>";
-            var delete_button = "<button type=\"button\" class=\"btn btn-primary btn-xs\" id=\"delete-btn-title-" + applicants[index].getID() + "\"> Delete </button>";
+            var edit_button = "<button type=\"button\" style=\"padding-right:10px;\" class=\"btn button-flatten-warning btn-xs\" id=\"edit-btn-title-" + applicants[index].getID() + "\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span>  Edit </button>";
+            var delete_button = "<button type=\"button\" style=\"padding-right:10px;\" class=\"btn button-flatten-danger btn-xs\" id=\"delete-btn-title-" + applicants[index].getID() + "\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span> Delete </button>";
   
 			var applicantList = document.getElementById('applicantList');
-			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "<div class=\"btn-group\" style=\"float:right;\">"+group_dropdown + edit_button + delete_button + "</div></div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>" + applicants[index].getEducation() + "</td></tr><tr><td><a href=\"#\" class=\"emailLink\" id=\"emailLink-" + applicants[index].getID() + "\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents</th></tr><tr><td><a href=\"#\" id=\"add-doc-" + applicants[index].getID() + "\">Add</a></td></tr><tr><td><a href=\"#\" id=\"doc-" + applicants[index].getID() + "\">View All</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments</th></tr><tr><td><a href=\"#\" id=\"add-comment-" + applicants[index].getID() + "\">Add</a></td></tr><tr><td><a href=\"#\" id=\"comment-" + applicants[index].getID() + "\">View All</a></td></tr></table></div></div></div>");
+			$("#applicantList").append("<div class=\"panel panel-default\" id=\"applicant-selectable-0\" ><div class=\"panel-heading\">" + applicants[index].getFirstName() + " " + applicants[index].getLastName() + "<div class=\"btn-group\" style=\"float:right;\">" + group_dropdown + edit_button + delete_button + "</div></div><div class=\"panel-body\"><div class=\"col-md-4\"><table width=\"100%\"><tr><td>" + applicants[index].getEducation() + "</td></tr><tr><td><a href=\"#\" class=\"emailLink\" id=\"emailLink-" + applicants[index].getID() + "\">" + applicants[index].getEmail() + "</a></td></tr><tr><td>" + applicants[index].getPhoneNumber() + "</td></tr></table></div><div class=\"col-md-offset-2 col-md-3\"><table width=\"100%\"><tr><th>Documents</th></tr><tr><td><a href=\"#\" id=\"add-doc-" + applicants[index].getID() + "\">Add Document</a></td></tr><tr><td><a href=\"#\" id=\"doc-" + applicants[index].getID() + "\">View Documents</a></td></tr></table></div><div class=\"col-md-3\"><table width=\"100%\"><tr><th>Comments</th></tr><tr><td><a href=\"#\" id=\"add-comment-" + applicants[index].getID() + "\">Add Comment</a></td></tr><tr><td><a href=\"#\" id=\"comment-" + applicants[index].getID() + "\">View Comments</a></td></tr></table></div></div></div>");
 			var emailOfApplicant = applicants[index].getEmail();
 			$("#emailLink-" + applicants[index].getID()).on('click', function(evt) {
 				var applicantID = evt.target.id.split("-")[1];
@@ -208,7 +217,7 @@ $(function() {
             });
             $("#dropdown-list-" + applicants[index].getID()).on('click', function(evt) {
                 $('#dropdown-btn-title-' + evt.target.id.split("-")[0]).empty();
-                $('#dropdown-btn-title-' + evt.target.id.split("-")[0]).append(evt.target.id.split("-")[1] + "<span class=\"caret\"></span>");
+                $('#dropdown-btn-title-' + evt.target.id.split("-")[0]).append("<span class=\"caret\"></span> " + evt.target.id.split("-")[1]);
 
                 positionSet[selectedPositionIndex].getApplicant(evt.target.id.split("-")[0]).setGroup(evt.target.id.split("-")[1]);
             });
@@ -225,7 +234,7 @@ $(function() {
             $("#delete-btn-title-" + applicants[index].getID()).on('click', function(evt) {
                 var applicantID = evt.target.id.split("-")[3];
                 modalID = applicantID;
-                $('#nameDApplicantModal').text("Do you want to permanently delete " + applicants[applicantID].getFirstName()+" "+ applicants[applicantID].getLastName()+ "? Type 'DELETE' into the field to confirm.");
+                $('#nameDApplicantModal').text("Do you want to permanently delete " + applicants[applicantID].getFirstName()+" "+ applicants[applicantID].getLastName()+ "? Type 'DELETE' to confirm.");
                 $('#deleteApplicantModal').modal('show');
             });
 		}
@@ -510,16 +519,32 @@ $(function() {
         var docName = document.getElementById("inputAddDocName").value;
         var fileName = document.getElementById("exampleInputFile").value;
 
+        if (!docName) {
+            $("#inputAddDocNameFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputAddDocNameFormGroup").removeClass("has-error");
+        }
+        if (!fileName) {
+            $("#inputAddDocFileFormGroup").addClass("has-error");
+        }
+        else {
+            $("#inputAddDocFileFormGroup").removeClass("has-error");
+        }
+
         if (docName && fileName) {
+            $('#addDocModal').modal('hide');
+            document.getElementById("inputAddDocName").value = "";
+            document.getElementById("exampleInputFile").value = "";
+
+            $("#inputAddDocNameFormGroup").removeClass("has-error");
+            $("#inputAddDocFileFormGroup").removeClass("has-error");
+
             var newDoc = new doc(docName, 1, "graphics/placeholder.png");
             var applicants = positionSet[selectedPositionIndex].getApplicantsByGroup(selectedGroupIndex);
             applicants[selectedApplicantID].addDocument(newDoc);
+
         }
-
-		document.getElementById("inputAddDocName").value = "";
-        document.getElementById("exampleInputFile").value = "";
-
-	 	$('#addDocModal').modal('hide');
      });
 
     $("#createAddCommentModal").click(function(evt) {
