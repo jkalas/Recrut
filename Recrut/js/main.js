@@ -501,7 +501,6 @@ $(function() {
      });
 
 
-
 	$("#closeDocModal").click(function(evt) {
 
      });
@@ -550,7 +549,7 @@ $(function() {
         if (title && commenterName && text) {
             $('#addCommentModal').modal('hide');
             document.getElementById("inputTitle").value = "";
-            document.getElementById("inputCommenterName").value = "";
+            document.getElementById("inputCommenterName").value = "John Doe";
             document.getElementById("inputComment").value = "";
 
             $("#inputTitleFormGroup").removeClass("has-error");
