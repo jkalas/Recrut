@@ -144,6 +144,20 @@
 	color: #fff;
 }
 
+.panel-flatten,
+.panel-flatten:hover,
+.panel-flatten:focus {
+	background-color: #c0c0c0 !important; 
+	color: #353535;
+}
+
+.panel-flatten-border,
+.panel-flatten-border:hover,
+.panel-flatten-border:focus {
+	border-color: #c0c0c0;
+}
+
+
 @font-face {
     font-family: Montserrat;
     src: url(../external_dependencies/Montserrat-Regular.ttf);
