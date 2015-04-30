@@ -41,7 +41,7 @@ $(function() {
 
     var defaultApplicant3 = new applicant("Adam", "Dove", "ad@chicago.edu", "(322) 555-2422", "University of Chicago", 0, "Group");
     var defaultApplicant4 = new applicant("Billy", "Bob", "billy@florida.edu", "(545) 444-4455", "University of Florida", 1, "Group");
-    var defaultApplicant5 = new applicant("Samantha", "Carly", "sam.car@columbia.edu", "(890) 553-2316", "Columbia University", 1, "Group");
+    var defaultApplicant5 = new applicant("Samantha", "Carly", "sam.car@columbia.edu", "(890) 553-2316", "Columbia University", 2, "Group");
 
     defaultApplicant3.addComment(defaultComment1);
     defaultApplicant3.addComment(defaultComment2);
