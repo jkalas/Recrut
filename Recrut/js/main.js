@@ -202,16 +202,14 @@ $(function() {
 			$("#add-doc-" + applicants[index].getID()).on('click', function(evt) {
                 selectedApplicantID = evt.target.id.split("-")[2];
 
-                $("#addDocModalHeader").empty();
-                $("#addDocModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeAddDocModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Add Document for " + applicants[selectedApplicantID].getFullName() + "</h4>");
+                document.getElementById("addDocTitle").innerHTML = "Add Document for " + applicants[selectedApplicantID].getFullName();
 
 				$('#addDocModal').modal('show');
 			});
             $("#add-comment-" + applicants[index].getID()).on('click', function(evt) {
                 selectedApplicantID = evt.target.id.split("-")[2];
 
-                $("#addCommentModalHeader").empty();
-                $("#addCommentModalHeader").append("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"closeAddCommentModal\"><span aria-hidden=\"true\">&times;</span></button><h4 class=\"modal-title\">Add Comment for " + applicants[selectedApplicantID].getFullName() + "</h4>");
+                document.getElementById("addCommentTitle").innerHTML = "Add Comment for " + applicants[selectedApplicantID].getFullName();
 
                 $('#addCommentModal').modal('show');
             });
@@ -547,6 +545,14 @@ $(function() {
         }
      });
 
+    $("#closeAddDocModal").click(function(evt) {
+        document.getElementById("inputAddDocName").value = "";
+        document.getElementById("exampleInputFile").value = "";
+
+        $("#inputAddDocNameFormGroup").removeClass("has-error");
+        $("#inputAddDocFileFormGroup").removeClass("has-error");
+    });
+
     $("#createAddCommentModal").click(function(evt) {
         var title = document.getElementById("inputTitle").value;
         var commenterName = document.getElementById("inputCommenterName").value;
@@ -587,6 +593,16 @@ $(function() {
         }
 
      });
+
+    $("#closeAddCommentModal").click(function(evt) {
+        document.getElementById("inputTitle").value = "";
+        document.getElementById("inputCommenterName").value = "John Doe";
+        document.getElementById("inputComment").value = "";
+
+        $("#inputTitleFormGroup").removeClass("has-error");
+        $("#inputCommenterNameFormGroup").removeClass("has-error");
+        $("#inputAddCommentFormGroup").removeClass("has-error");
+    });
 
     $("#search-button-applicant").click(function(evt) {
         var searchValue = document.getElementById("search-field-applicant").value;

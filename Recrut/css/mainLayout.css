@@ -111,9 +111,15 @@
 	font-weight: bold;
 }
 
+.list>li.active>a,
+.list>li.active>a:focus, 
+.list>li.active>a:hover {
+	background-color: #5bc0de !important;
+}
+
 .highlight .active a,
 .highlight .active a:hover {
-    background-color: #5bc0de !important; 
+    background-color: #337ab7 !important; 
 }
 
 .button-flatten,
@@ -156,7 +162,6 @@
 .panel-flatten-border:focus {
 	border-color: #c0c0c0;
 }
-
 
 @font-face {
     font-family: Montserrat;
