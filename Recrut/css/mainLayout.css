@@ -2,6 +2,12 @@
 	width:140px
 }
 
+
+.btn {
+	background-color: #C2C2C2 !important; 
+	color: #fff;
+}
+
 #navigation table{
 	width:100%
 }
@@ -69,7 +75,7 @@
     font-family:'Glyphicons Halflings';
     content:"\e080";
     float: right;
-    color: #337ab7;
+    color: #24557F;
 }
 
 .folder-active a:after {
@@ -114,7 +120,7 @@
 .list>li.active>a,
 .list>li.active>a:focus, 
 .list>li.active>a:hover {
-	background-color: #5bc0de !important;
+	background-color: #24557F !important;
 }
 
 .highlight .active a,
@@ -139,29 +145,30 @@
 .button-flatten-warning,
 .button-flatten-warning:hover,
 .button-flatten-warning:focus {
-	background-color: #f0ad4e !important; 
+	background-color: #337ab7 !important; 
 	color: #fff;
 }
 
 .button-flatten-good,
 .button-flatten-good:hover,
 .button-flatten-good:focus {
-	background-color: #5cb85c !important; 
+	background-color: #DEDEDE !important; 
 	color: #fff;
 }
 
 .panel-flatten,
 .panel-flatten:hover,
 .panel-flatten:focus {
-	background-color: #c0c0c0 !important; 
+	background-color: #DEDEDE !important; 
 	color: #353535;
 }
 
 .panel-flatten-border,
 .panel-flatten-border:hover,
 .panel-flatten-border:focus {
-	border-color: #c0c0c0;
+	border-color: #DEDEDE;
 }
+
 
 @font-face {
     font-family: Montserrat;
