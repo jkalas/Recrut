@@ -132,13 +132,15 @@
 .button-flatten:hover,
 .button-flatten:focus {
 	background-color: #337ab7 !important; 
+
 	color: #fff;
 }
 
 .button-flatten-danger,
 .button-flatten-danger:hover,
 .button-flatten-danger:focus {
-	background-color: #d9534f !important; 
+	background-color: #337ab7 !important; 
+	border-left: 2px solid #24557F;
 	color: #fff;
 }
 
@@ -152,7 +154,8 @@
 .button-flatten-good,
 .button-flatten-good:hover,
 .button-flatten-good:focus {
-	background-color: #DEDEDE !important; 
+	background-color: #337ab7 !important; 
+	border-right: 3px solid #24557F;
 	color: #fff;
 }
 
@@ -169,6 +172,9 @@
 	border-color: #DEDEDE;
 }
 
+.navbar-brand{
+	background-color: #24557F;
+}
 
 @font-face {
     font-family: Montserrat;
