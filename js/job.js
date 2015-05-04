@@ -14,7 +14,7 @@ var job = function(name, description, id) {
 	this.id = id;
 	this.groups = ["All"];
 	this.applicants = [];
-	this.searchTags = description.split(" ").concat(name.split(" "));
+	this.searchTags = description.toLowerCase().split(" ").concat(name.split(" "));
 
 
 	//Public Methods
@@ -52,12 +52,12 @@ var job = function(name, description, id) {
  	}
 
  	this.addSearchTag = function(tag) {
- 		this.searchTags.push(tag);
+ 		this.searchTags.push(tag.toLowerCase());
  	}
 
  	this.removeSearchTag = function(tag) {
 		for (var i = 0; i < this.searchTags.length; i++) {
-			if (this.searchTags[i] == tag) {
+			if (this.searchTags[i] == tag.toLowerCase()) {
 				this.searchTags.splice(i, 1);
 				return;
 			}
@@ -66,11 +66,14 @@ var job = function(name, description, id) {
 	}
 
 	this.searchByKeys = function(search) {
-		var searchKeys = search.split(" ");
+		var searchKeys = search.toLowerCase().split(" ");
+		if (searchKeys.length == 0) {
+			return true;
+		}
 		var tags = this.getSearchTags();
 		for (var j = 0; j < searchKeys.length; j++) {
 			for (var k = 0; k < tags.length; k++) {
-				if (tags[k].indexOf(searchKey[j]) > -1) {
+				if (tags[k].indexOf(searchKeys[j]) > -1) {
 					return true;
 				}
 			}
@@ -113,6 +116,28 @@ var job = function(name, description, id) {
 				this.applicants.splice(i, 1);
 			}
 		}
+	}
+
+	this.searchGroups = function(search) {
+		var searchKeys = search.toLowerCase().split(" ");
+		if (searchKeys.length == 0) {
+			return this,getGroups();
+		}
+		var groups = this.getGroups();
+		var matched_groups = []
+		for (var j = 0; j < groups.length; j++) {
+			for (var k = 0; k < searchKeys.length; k++) {
+				if (tags[k].indexOf(searchKeys[k]) > -1) {
+					matched_groups.push(groups[j])
+					break
+				}
+			}
+		}
+		return matched_groups;
+	}
+
+	this.getApplicants = function() {
+		return this.applicants;
 	}
 
 	this.getApplicantsByGroup = function(groupName) {

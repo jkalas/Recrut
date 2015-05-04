@@ -15,7 +15,7 @@
  	this.comments = [];
 
  	//searchTags
- 	this.searchTags = [firstName, lastName];
+ 	this.searchTags = [firstName.toLowerCase(), lastName.toLowerCase(), education.toLowerCase(), phoneNumber.toLowerCase(), email.toLowerCase()];
 
  	//non-applicant info
  	this.id = id;
@@ -26,6 +26,10 @@
 
  	this.equals = function(id) {
  		return (this.id == id);
+ 	}
+
+ 	this.setID = function(id) {
+ 		this.id = id;
  	}
 
  	this.getID = function() {
@@ -40,11 +44,19 @@
  		return this.lastName;
  	}
 
+ 	this.getFullName = function() {
+ 		return this.firstName + " " + this.lastName;
+ 	}
+
  	this.setFirstName =  function(firstName) {
+ 		this.removeSearchTag(this.getFirstName());
+ 		this.addSearchTag(firstName);
  		this.firstName = firstName;
  	}
 
  	this.setLastName = function(lastName) {
+ 		this.removeSearchTag(this.getLastName());
+ 		this.addSearchTag(lastName);
  		this.lastName = lastName;
  	}
 
@@ -53,6 +65,8 @@
  	}
 
  	this.setEmail = function(email) {
+ 		this.removeSearchTag(this.getEmail());
+ 		this.addSearchTag(email);
  		this.email = email;
  	}
 
@@ -61,6 +75,8 @@
  	}
 
  	this.setPhoneNumber = function(phoneNumber) {
+ 		this.removeSearchTag(this.getPhoneNumber());
+ 		this.addSearchTag(phoneNumber);
  		this.phoneNumber = phoneNumber;
  	}
 
@@ -69,6 +85,8 @@
  	}
 
  	this.setEducation = function(education) {
+ 		this.removeSearchTag(this.getEducation());
+ 		this.addSearchTag(education);
  		this.education = education;
  	}
 
@@ -77,12 +95,12 @@
  	}
 
  	this.addSearchTag = function(tag) {
- 		this.searchTags.push(tag);
+ 		this.searchTags.push(tag.toLowerCase());
  	}
 
  	this.removeSearchTag = function(tag) {
 		for (var i = 0; i < this.searchTags.length; i++) {
-			if (this.searchTags[i] == tag) {
+			if (this.searchTags[i] == tag.toLowerCase()) {
 				this.searchTags.splice(i, 1);
 				return;
 			}
@@ -91,7 +109,10 @@
 	}
 
 	this.searchByKeys = function(search) {
-		var searchKeys = search.split(" ");
+		var searchKeys = search.toLowerCase().split(" ");
+		if (searchKeys.length == 0) {
+			return true;
+		}
 		var tags = this.getSearchTags();
 		for (var j = 0; j < searchKeys.length; j++) {
 			for (var k = 0; k < tags.length; k++) {

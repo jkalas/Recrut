@@ -15,10 +15,7 @@
         <link rel="stylesheet" type="text/css" href="external_dependencies/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="external_dependencies/bootstrap-tagsinput/bootstrap-tagsinput.css" />
         <link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
-
-        <!-- Load fonts -->
-        <!--link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'-->
-
+    
         <!-- Load external js -->
         <script type="text/javascript" src="external_dependencies/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="external_dependencies/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
@@ -36,7 +33,7 @@
     <body>
       
       <!-- Add position modal -->
-      <div class="modal fade" id="positionModal">
+      <div class="modal fade" id="positionModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -48,18 +45,18 @@
                 <div class="form-group" id="inputPositionFormGroup">
                   <label for="inputPosition" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPosition" placeholder="Name">
+                    <input type="text" class="form-control" id="inputPosition" placeholder="eg. Software Engineer">
                   </div>
                 </div>
                 <div class="form-group" id="inputDescriptionFormGroup">
                   <label for="inputDescription" class="col-sm-2 control-label">Description</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputDescription" placeholder="Description">
+                    <input type="text" class="form-control" id="inputDescription" placeholder="eg. Developing code for...">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="createPositionModal">Create</button>
+                    <button type="submit" class="btn button-flatten" id="createPositionModal">Create</button>
                   </div>
                 </div>
               </form>
@@ -69,7 +66,7 @@
       </div>
 
       <!-- Add group modal -->
-      <div class="modal fade" id="groupModal">
+      <div class="modal fade" id="groupModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -81,12 +78,12 @@
                 <div class="form-group" id="inputGroupFormGroup">
                   <label for="inputGroup" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputGroup" placeholder="Name">
+                    <input type="text" class="form-control" id="inputGroup" placeholder="eg. Accepted">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="createGroupModal">Create</button>
+                    <button type="submit" class="btn button-flatten" id="createGroupModal">Create</button>
                   </div>
                 </div>
               </form>
@@ -96,7 +93,7 @@
       </div>
 
       <!-- Add applicant modal -->
-      <div class="modal fade" id="applicantModal">
+      <div class="modal fade" id="applicantModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -108,36 +105,36 @@
                 <div class="form-group" id="inputApplicantFirstNameFormGroup">
                   <label for="inputApplicantFirstName" class="col-sm-3 control-label">First Name*</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputApplicantFirstName" placeholder="First Name">
+                    <input type="text" class="form-control" id="inputApplicantFirstName" placeholder="Jane">
                   </div>
                 </div>
                 <div class="form-group" id="inputApplicantLastNameFormGroup">
                   <label for="inputApplicantLastName" class="col-sm-3 control-label">Last Name*</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputApplicantLastName" placeholder="Last Name">
+                    <input type="text" class="form-control" id="inputApplicantLastName" placeholder="Doe">
                   </div>
                 </div>
                 <div class="form-group" id="inputApplicantEducationFormGroup">
                   <label for="inputApplicantEducation" class="col-sm-3 control-label">Education</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputApplicantEducation" placeholder="Education">
+                    <input type="text" class="form-control" id="inputApplicantEducation" placeholder="M.I.T.">
                   </div>
                 </div>
                 <div class="form-group" id="inputApplicantEmailFormGroup">
                   <label for="inputApplicantEmail" class="col-sm-3 control-label">Email</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputApplicantEmail" placeholder="Email">
+                    <input type="text" class="form-control" id="inputApplicantEmail" placeholder="jane.doe@mit.edu">
                   </div>
                 </div>
                 <div class="form-group" id="inputApplicantPhoneFormGroup">
                   <label for="inputApplicantPhone" class="col-sm-3 control-label">Phone</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputApplicantPhone" placeholder="Phone">
+                    <input type="text" class="form-control" id="inputApplicantPhone" placeholder="(231) 343-4570">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="createApplicantModal">Create</button>
+                    <button type="submit" class="btn button-flatten" id="createApplicantModal">Create</button>
                   </div>
                 </div>
               </form>
@@ -146,11 +143,86 @@
         </div>
       </div>
 
+      <!-- Edit applicant modal -->
+      <div class="modal fade" id="editApplicantModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeEApplicantModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Edit Applicant</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <div class="form-group" id="inputEApplicantFirstNameFormGroup">
+                  <label for="inputEApplicantFirstName" class="col-sm-3 control-label">First Name*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEApplicantFirstName" placeholder="Jane">
+                  </div>
+                </div>
+                <div class="form-group" id="inputEApplicantLastNameFormGroup">
+                  <label for="inputEApplicantLastName" class="col-sm-3 control-label">Last Name*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEApplicantLastName" placeholder="Doe">
+                  </div>
+                </div>
+                <div class="form-group" id="inputEApplicantEducationFormGroup">
+                  <label for="inputEApplicantEducation" class="col-sm-3 control-label">Education</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEApplicantEducation" placeholder="M.I.T.">
+                  </div>
+                </div>
+                <div class="form-group" id="inputApplicantEmailFormGroup">
+                  <label for="inputApplicantEmail" class="col-sm-3 control-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEApplicantEmail" placeholder="jane.doe@mit.edu">
+                  </div>
+                </div>
+                <div class="form-group" id="inputEApplicantPhoneFormGroup">
+                  <label for="inputEApplicantPhone" class="col-sm-3 control-label">Phone</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEApplicantPhone" placeholder="(231) 343-4570">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-10 col-sm-2">
+                    <button type="submit" class="btn button-flatten" id="saveEApplicantModal">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
+<!-- Delete applicant modal -->
+      <div class="modal fade" id="deleteApplicantModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeDApplicantModal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Delete Applicant</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <form class="form-horizontal">
+                <p id='nameDApplicantModal'></p>
+                <div class="form-group" style="width: 30%; margin: 0 auto;">
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDApplicant">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-10 col-sm-2">
+                      <button type="submit" class="btn button-flatten" id="deleteDApplicantModal">Delete</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Email modal -->
-      <div class="modal fade" id="emailModal">
+      <div class="modal fade" id="emailModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -171,18 +243,18 @@
                 <div class="form-group" id="inputEmailSubjectFormGroup">
                   <label for="inputEmailSubject" class="col-sm-2 control-label">Subject:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmailSubject" placeholder="Subject">
+                    <input type="text" class="form-control" id="inputEmailSubject" placeholder="Interview Request">
                   </div>
                 </div>
                 <div class="form-group" id="inputEmailContentFormGroup">
                   <label for="inputEmailContent" class="col-sm-2 control-label">Message:</label>
                   <div class="col-sm-10">
-                    <textarea style="resize:none" rows="6" class="form-control" id="inputEmailContent" placeholder="Message"></textarea>
+                    <textarea style="resize:none" rows="6" class="form-control" id="inputEmailContent" placeholder="Dear Applicant ..."></textarea>
                   </div>
                 </div> 
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="sendEmailModal">Send</button>
+                    <button type="submit" class="btn button-flatten" id="sendEmailModal">Send</button>
                   </div>
                 </div>
               </form>
@@ -191,34 +263,43 @@
         </div>
       </div>
 
-      <!-- View doc modal -->
-      <div class="modal fade" id="docModal">
+      <!-- All docs modal -->
+      <div class="modal fade" id="docModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header" id="docModalHeader">
-              
             </div>
             <div class="modal-body" align="center" id="docModalImageHolder">
-              
+              <div class="tabbable">
+                <ul class="nav nav-tabs" id="docsNav">
+                  <li class="active"><a href="#resumeTab" data-toggle="tab">Resume</a></li>
+                </ul>
+                <div class="tab-content" id="docsContent">
+                  <div class="tab-pane active" id="resumeTab">
+                    <br>
+                    <img src="graphics/resume.png" alt="Resume" style="width:536px;height:694px">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Add doc modal -->
-      <div class="modal fade" id="addDocModal">
+      <div class="modal fade" id="addDocModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" id="addDocModalHeader">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAddDocModal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Add Document</h4>
+              <h4 class="modal-title" id="addDocTitle">Add Document</h4>
             </div>
             <div class="modal-body" align="center">
               <form class="form-horizontal">
                 <div class="form-group" id="inputAddDocNameFormGroup">
                   <label for="inputAddDocName" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputAddDocName" placeholder="Name">
+                    <input type="text" class="form-control" id="inputAddDocName" placeholder="eg. Resume">
                   </div>
                 </div>
                 <div class="form-group" id="inputAddDocFileFormGroup">
@@ -228,7 +309,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="createAddDocModal">Add</button>
+                    <button type="submit" class="btn button-flatten" id="createAddDocModal">Add</button>
                   </div>
                 </div>
               </form>
@@ -237,105 +318,73 @@
         </div>
       </div>
 
-      <!-- CommentsModal -->
-      <div class="modal fade" id="commentModal1">
+      <!-- All comments modal -->
+      <div class="modal fade" id="commentModal1" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal1"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="commenTitle1">Interview 1</h4>
+            <div class="modal-header" id="commentsModalHeader">
             </div>
-            <div class="modal-body" align="center">
-              <form class="form-horizontal">
-                <div class="form-group" id="inputTitleFormGroupComment1">
-                  <label for="inputTitleComment1" class="col-sm-2 control-label">Title</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputTitleComment1" style="float:left;">Interview 1</p>
+            <div class="modal-body">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs" id="commentsNav">
+                      <li class="active"><a href="#tab1" data-toggle="tab">Interview 1</a></li>
+                    </ul>
+                    <div class="tab-content" id="commentsContent">
+                      <div class="tab-pane active" id="tab1">
+                        <br>
+                        <form class="form-horizontal">
+                          <div class="form-group" id="inputCommenterNameFormGroupComment1">
+                            <label for="inputCommenterNameComment1" class="col-sm-2 control-label">By</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static" id="inputCommenterNameComment1" style="float:left;">Paul Colella</p>
+                            </div>
+                          </div>
+                          <div class="form-group" id="inputAddCommentFormGroupComment1">
+                            <label for="inputCommentComment1" class="col-sm-2 control-label">Comment</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static" id="inputCommentComment1" style="float:left;">Very Smart! Approved!</p>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group" id="inputCommenterNameFormGroupComment1">
-                  <label for="inputCommenterNameComment1" class="col-sm-2 control-label">Commenter</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommenterNameComment1" style="float:left;">Paul Colella</p>
-                  </div>
-                </div>
-                <div class="form-group" id="inputAddCommentFormGroupComment1">
-                  <label for="inputCommentComment1" class="col-sm-2 control-label">Comment</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommentComment1" style="float:left;">Very Smart! Approved!</p>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CommentsModal -->
-      <div class="modal fade" id="commentModal2">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeCommentModal2"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="commenTitle2">Interview 2</h4>
-            </div>
-            <div class="modal-body" align="center">
-              <form class="form-horizontal">
-                <div class="form-group" id="inputTitleFormGroupComment2">
-                  <label for="inputTitleComment2" class="col-sm-2 control-label">Title</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputTitleComment2" style="float:left;">Interview 2</p>
-                  </div>
-                </div>
-                <div class="form-group" id="inputCommenterNameFormGroupComment2">
-                  <label for="inputCommenterNameComment2" class="col-sm-2 control-label">Commenter</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommenterNameComment2" style="float:left;">Brandt Nelson</p>
-                  </div>
-                </div>
-                <div class="form-group" id="inputAddCommentFormGroupComment2">
-                  <label for="inputCommentComment2" class="col-sm-2 control-label">Comment</label>
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="inputCommentComment2" style="float:left;">I think this applicant is a great cultural fit!</p>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
           </div>
         </div>
       </div>
 
       <!-- Add CommentsModal -->
-      <div class="modal fade" id="addCommentModal">
+      <div class="modal fade" id="addCommentModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" id="addCommentModalHeader">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAddCommentModal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="addCommenTitle">Add Comment</h4>
+              <h4 class="modal-title" id="addCommentTitle">Add Comment</h4>
             </div>
             <div class="modal-body" align="center">
               <form class="form-horizontal">
                 <div class="form-group" id="inputTitleFormGroup">
                   <label for="inputTitle" class="col-sm-2 control-label">Title</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+                    <input type="text" class="form-control" id="inputTitle" placeholder="Interview 1">
                   </div>
                 </div>
                 <div class="form-group" id="inputCommenterNameFormGroup">
-                  <label for="inputCommenterName" class="col-sm-2 control-label">Commenter</label>
+                  <label for="inputCommenterName" class="col-sm-2 control-label">By</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputCommenterName" placeholder="Commenter">
+                    <input type="text" class="form-control" id="inputCommenterName" value="John Doe">
                   </div>
                 </div>
                 <div class="form-group" id="inputAddCommentFormGroup">
                   <label for="inputComment" class="col-sm-2 control-label">Comment</label>
                   <div class="col-sm-10">
-                    <textarea style="resize:none" rows="10" class="form-control" id="inputComment" placeholder="Comment"></textarea>
+                    <textarea style="resize:none" rows="10" class="form-control" id="inputComment" placeholder="This Applicant ..."></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-10 col-sm-2">
-                    <button type="submit" class="btn btn-primary" id="createAddCommentModal">Add</button>
+                    <button type="submit" class="btn button-flatten" id="createAddCommentModal">Add</button>
                   </div>
                 </div>
               </form>
@@ -348,59 +397,60 @@
         <nav class="navbar navbar-default" id="navbar">
             <div class="container-fluid" style="background-color:#337ab7;">
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="color:#ffffff;">RECRÜT</a>
+                    <a class="navbar-brand" id="title-name"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> RECRÜT</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <p class="navbar-text navbar-right" style="color:#ffffff;">Signed in as John Doe</p>
+                    <p class="navbar-text navbar-right" style="color:#ffffff;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> John Doe</p>
                 </div>
             </div>
         </nav>
+
 
         <div class="container-fluid">
             <div class="row">
                 <!-- Position List -->
                 <div class="col-md-2 pane">
-                    <ul class="nav nav-pills nav-stacked">
+                    <ul class="nav nav-pills nav-stacked highlight">
                       <li role="presentation" class="active" id="addPosition"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Position</a></li>
                     </ul>
                     <div class="input-group" style="padding-top: 5px;">
                       <input type="text" class="form-control" placeholder="Search Positions">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+                        <button class="btn" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                       </span>
                     </div>
                     <div class="mygrid-wrapper-div">
-                        <ul class="nav nav-pills nav-stacked" id="positionList">
+                        <ul class="nav nav-pills nav-stacked list" id="positionList">
                             
                         </ul>
                     </div>
                 </div>
                 <!-- Group List -->
                 <div class="col-md-2 pane">
-                  <ul class="nav nav-pills nav-stacked">
+                  <ul class="nav nav-pills nav-stacked highlight">
                     <li role="presentation" class="active" id="addGroup"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Group</a></li>
                   </ul>
                   <div class="input-group" style="padding-top: 5px;">
                     <input type="text" class="form-control" placeholder="Search Groups">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+                      <button class="btn" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
                     </span>
                   </div>
                   <div class="mygrid-wrapper-div">
-                    <ul class="nav nav-pills nav-stacked" id="groupList">
+                    <ul class="nav nav-pills nav-stacked list" id="groupList">
 
                     </ul>
                   </div>
                 </div>
                 <!-- Applicant List -->
                 <div class="col-md-8">
-                    <ul class="nav nav-pills nav-stacked">
+                    <ul class="nav nav-pills nav-stacked highlight">
                       <li role="presentation" class="active" id="addApplicant"><a href="#" style="text-align:center;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Applicant</a></li>
                     </ul>
                     <div class="input-group" style="padding-top: 5px;">
                       <input type="text" class="form-control" placeholder="Search Applicants" id="search-field-applicant">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" id="search-button-applicant"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+                        <button class="btn btn" type="button" id="search-button-applicant"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
                       </span>
                     </div>
                     <div class="mygrid-wrapper-div">

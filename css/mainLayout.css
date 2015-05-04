@@ -2,6 +2,12 @@
 	width:140px
 }
 
+
+.btn {
+	background-color: #C2C2C2 !important; 
+	color: #fff;
+}
+
 #navigation table{
 	width:100%
 }
@@ -69,7 +75,7 @@
     font-family:'Glyphicons Halflings';
     content:"\e080";
     float: right;
-    color: #337ab7;
+    color: #24557F;
 }
 
 .folder-active a:after {
@@ -104,4 +110,72 @@
 .dropdown-menu-center {
   right: 35%;
   left: auto;
+}
+
+.panel-heading {
+	font-size: 115%;
+	font-weight: bold;
+}
+
+.list>li.active>a,
+.list>li.active>a:focus, 
+.list>li.active>a:hover {
+	background-color: #24557F !important;
+}
+
+.highlight .active a,
+.highlight .active a:hover {
+    background-color: #337ab7 !important; 
+}
+
+.button-flatten,
+.button-flatten:hover,
+.button-flatten:focus {
+	background-color: #337ab7 !important; 
+	color: #fff;
+}
+
+.button-flatten-danger,
+.button-flatten-danger:hover,
+.button-flatten-danger:focus {
+	background-color: #d9534f !important; 
+	color: #fff;
+}
+
+.button-flatten-warning,
+.button-flatten-warning:hover,
+.button-flatten-warning:focus {
+	background-color: #337ab7 !important; 
+	color: #fff;
+}
+
+.button-flatten-good,
+.button-flatten-good:hover,
+.button-flatten-good:focus {
+	background-color: #DEDEDE !important; 
+	color: #fff;
+}
+
+.panel-flatten,
+.panel-flatten:hover,
+.panel-flatten:focus {
+	background-color: #DEDEDE !important; 
+	color: #353535;
+}
+
+.panel-flatten-border,
+.panel-flatten-border:hover,
+.panel-flatten-border:focus {
+	border-color: #DEDEDE;
+}
+
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../external_dependencies/Montserrat-Regular.ttf);
+}
+
+#title-name {
+	color:#ffffff;
+	font-family: 'Montserrat', sans-serif;
 }
